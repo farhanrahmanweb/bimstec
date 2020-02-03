@@ -103,15 +103,7 @@
                 </li>
 
                 <li class="dropdown">
-                    <a data-toggle="dropdown" href="#" title="Events">Events <i class="fas fa-angle-right"></i></a>
-                    <ul class="dropdown-menu second-level">
-                        <li class="dropdown">
-                            <a href="calendar-meetings.php" title="Calendar of Meetings">Calendar of Meetings</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" title="Concluded Events">Concluded Events</a>
-                        </li>
-                    </ul>
+                    <a data-toggle="dropdown" href="#" title="Events">Events</a>
                 </li>
                 <li class="dropdown">
                     <a data-toggle="dropdown" href="#" title="Gallery">Gallery <i class="fas fa-angle-right"></i></a>
@@ -121,23 +113,6 @@
                         </li>
                         <li class="dropdown">
                             <a href="{{route('videos')}}" title="Videos">Videos</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a data-toggle="dropdown" href="#" title="News">News <i class="fas fa-angle-right"></i></a>
-                    <ul class="dropdown-menu second-level">
-                        <li class="dropdown">
-                            <a href="#" title="BIMSTEC e-Newsletters">BIMSTEC e-Newsletters</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="bimstec-news.php" title="BIMSTEC NEWS">BIMSTEC NEWS</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" title="Press Release">Press Release</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" title="Videos">Videos</a>
                         </li>
                     </ul>
                 </li>
