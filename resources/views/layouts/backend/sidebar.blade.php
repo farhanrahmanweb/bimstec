@@ -15,10 +15,6 @@
                     <i class="o-table-content-1 mr-3 text-gray"></i> <span>Events</span></a>
                 </li>
                 <li class="sidebar-list-item">
-                    <a href="{{route('admin.news.index')}}" class="sidebar-link text-muted  {{Request::is('admin/news*') ? 'active' : ''}}">
-                        <i class="o-table-content-1 mr-3 text-gray"></i> <span>News</span></a>
-                </li>
-                <li class="sidebar-list-item">
                     <a href="{{route('admin.video.index')}}" class="sidebar-link text-muted  {{Request::is('admin/video*') ? 'active' : ''}}">
                         <i class="o-table-content-1 mr-3 text-gray"></i> <span>Videos</span></a>
                 </li>

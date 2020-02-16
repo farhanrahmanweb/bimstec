@@ -69,7 +69,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     Route::resource('subcategory', 'SubcategoryController');
     Route::resource('video', 'VideoController');
     Route::resource('gallery', 'GalleryController');
-    Route::resource('news', 'NewsController');
+//    Route::resource('news', 'NewsController');
     Route::resource('secretary', 'SecretaryController');
 });
 
