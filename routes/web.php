@@ -35,6 +35,7 @@ Route::get('/bimstec-centres', 'HomeController@bimstecCentres')->name('bimstec-c
 Route::get('/photos', 'HomeController@photos')->name('photos');
 Route::get('/videos', 'HomeController@videos')->name('videos');
 Route::get('/bimstec-news', 'HomeController@news')->name('bimstec-news');
+Route::get('/areas-cooperation', 'HomeController@areaCooperation')->name('areas-cooperation');
 Route::get('/trade-investment', 'HomeController@tradeInvestment')->name('trade-investment');
 Route::get('/transport-communication', 'HomeController@transportCommunication')->name('transport-communication');
 Route::get('/energy', 'HomeController@energy')->name('energy');

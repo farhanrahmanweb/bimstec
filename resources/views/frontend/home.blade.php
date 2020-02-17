@@ -46,7 +46,7 @@
     </section>
     <!-- end story section -->
 
-    <!-- start testimonial slider style 01 section -->
+    <!-- start Event slider style 01 section -->
     <section id="upcoming_events" class="wow fadeIn bg-light-gray">
         <div class="container">
             <div class="row justify-content-center">
@@ -94,7 +94,7 @@
             </div>
         </div>
     </section>
-    <!-- end testimonial slider style 01 section -->
+    <!-- end Event slider style 01 section -->
 
     <!-- feature box section -->
     <section id="focus_area" class="wow fadeIn lg-padding-two-lr md-no-padding-lr">
@@ -343,42 +343,54 @@
     </section>
     <!-- end feature box section -->
 
-
-    <!-- start blog section -->
-    <section id="news" class="border-top border-color-extra-light-gray wow fadeIn">
+    <!-- start Event slider style 01 section -->
+    <section id="upcoming_events" class="wow fadeIn bg-light-white">
         <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h5 class="text-uppercase alt-font text-extra-dark-gray margin-10px-top margin-20px-bottom font-weight-700 md-width-100 sm-width-100">Latest News</h5>
+            <div class="row justify-content-center">
+                <div class="col-12 col-xl-6 col-md-8 margin-eight-bottom md-margin-40px-bottom sm-margin-30px-bottom text-center">
+                    <h5 class="alt-font font-weight-700 text-extra-dark-gray margin-20px-bottom text-uppercase">Recent Events</h5>
                     <span class="separator-line-horrizontal-medium-light2 bg-deep-pink d-table mx-auto width-100px"></span>
                 </div>
             </div>
-            <div class="row margin-100px-top md-margin-70px-top sm-margin-50px-top">
-                <!-- start blog post item -->
-                @foreach($latestNewses as $key=>$news)
-                    <div class="col-12 col-lg-3 col-md-6 md-margin-50px-bottom sm-margin-30px-bottom last-paragraph-no-margin wow fadeInUp">
-                        <div class="blog-post blog-post-style1 text-center text-md-left">
-                            <div class="blog-post-images overflow-hidden margin-25px-bottom md-margin-20px-bottom">
-                                <a href="{{$news->news_link}}" target="_blank">
-                                    <img src="{{asset('storage/news/'. $news->image)}}" alt="">
-                                </a>
-                            </div>
-                            <div class="post-details">
-                                <span
-                                    class="post-author text-extra-small text-medium-gray text-uppercase d-block margin-10px-bottom sm-margin-5px-bottom">{{\Carbon\Carbon::parse($news->news_date, 'UTC')->isoFormat('Do MMMM YYYY')}}</span>
-                                <a href="{{$news->news_link}}" target="_blank" class="post-title text-medium text-extra-dark-gray width-90 md-width-100 d-block">
+            <div class="row position-relative">
+                <div class="swiper-container swiper-pagination-bottom black-move blog-slider swiper-three-slides">
+                    <div class="swiper-wrapper">
+                        <!-- start testimonial item -->
+                        @if(count($upcomingEvents)>0)
+                            @foreach($upcomingEvents as $key=>$event)
+                                <div class="col-12 col-lg-4 col-md-6 swiper-slide md-margin-four-bottom">
+                                    <div class="margin-half-all bg-white box-shadow-light text-center padding-fourteen-all sm-padding-30px-all">
+                                        <p class="md-margin-15px-bottom sm-margin-20px-bottom">{{$event->event_title}}</p>
+                                        <span class="text-extra-dark-gray text-small text-uppercase d-block line-height-10 alt-font font-weight-600 py-2">{{$event->event_location}}</span>
+                                        <span class="text-extra-dark-gray text-small text-uppercase d-block line-height-10 alt-font font-weight-600">
 
-                                    {!! \Illuminate\Support\Str::substr($news->description, 0, 100 )!!}..
-                                </a>
+                                    @if($event->event_start_date==$event->event_end_date)
+                                                {{\Carbon\Carbon::parse($event->event_start_date, 'UTC')->isoFormat('Do MMMM YYYY')}}
+                                            @else
+                                                @php
+                                                    $edate = \Carbon\Carbon::parse($event->event_end_date, 'UTC');
+                                                    $sdate = \Carbon\Carbon::parse($event->event_start_date, 'UTC');
+                                                @endphp
+                                                {{$sdate->isoFormat('D')}}-{{$edate->isoFormat('D')}} {{\Carbon\Carbon::parse($event->event_start_date, 'UTC')->isoFormat('MMMM YYYY')}}
+                                            @endif
+                                </span>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="col-12 col-lg-4 col-md-6 swiper-slide md-margin-four-bottom">
+                                <div class="margin-half-all bg-white box-shadow-light text-center padding-fourteen-all sm-padding-30px-all">
+                                    <h4 class="md-margin-15px-bottom sm-margin-20px-bottom">Currently No Event</h4>
+                                </div>
                             </div>
-                        </div>
+                    @endif
+                    <!-- end testimonial item -->
                     </div>
-            @endforeach
-            <!-- end blog post item -->
-                <a class="wow fadeInUp btn btn-medium btn-black margin-five-top mx-auto d-table d-lg-inline-block md-margin-lr-auto" data-wow-delay="0.6s" href="{{route('bimstec-news')}}">View All</a>
+                    <div class="swiper-pagination swiper-pagination-three-slides h-auto"></div>
+                </div>
             </div>
         </div>
     </section>
-    <!-- end blog section -->
+    <!-- end Event slider style 01 section -->
 
 @endsection
