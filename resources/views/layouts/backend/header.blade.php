@@ -24,7 +24,7 @@
                     <div class="dropdown-divider"></div>
                     <a href="{{route('admin.profile.edit',\Illuminate\Support\Facades\Auth::user()->id)}}"
                        class="dropdown-item">Update Profile</a>
-                    <a href="changePassword" class="dropdown-item">Change Password</a>
+                    <a href="{{route('admin.changePassword')}}" class="dropdown-item">Change Password</a>
                     <a href="{{route('admin.profile.create')}}" class="dropdown-item">Create Users</a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}"

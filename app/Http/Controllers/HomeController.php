@@ -10,6 +10,7 @@ use App\Event;
 use App\Gallery;
 use App\Photo;
 use App\Secretary;
+use App\SecretaryProfile;
 use App\Slider;
 use App\Video;
 use Illuminate\Http\Request;
@@ -50,7 +51,8 @@ class HomeController extends Controller
     {
         $statements = Secretary::where('type', '=', 'statement')->where('is_publish', 1)->latest()->get();
         $secretaryPages = Secretary::where('type', '=', 'page')->where('is_publish', 1)->latest()->get();
-        return view('frontend.secretary-general', compact('statements', 'secretaryPages'));
+        $profile = SecretaryProfile::first();
+        return view('frontend.secretary-general', compact('profile','statements', 'secretaryPages'));
     }
 
     public function secretaryPage($id)

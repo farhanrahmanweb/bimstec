@@ -23,6 +23,7 @@
                             <div class="form-group">
                                 <label class="form-control-label">Profile Image</label>
                                 <input type="file" name="image" placeholder="Profile Image" class="form-control">
+                                <img src="{{asset('storage/profile/'. $user->image)}}" class="img-thumbnail" width="200" alt="">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Password</label>

@@ -68,6 +68,12 @@
                                class="sidebar-link text-muted pl-lg-5  {{Request::is('admin/category*') ? 'active' : ''}}">Secretary
                                 General's</a>
                         </li>
+                        <li class="sidebar-list-item">
+                            <a href="{{route('admin.secretaryProfile.edit', 1)}}"
+                               class="sidebar-link text-muted pl-lg-5  {{Request::is('admin/category*') ? 'active' : ''}}">
+                                Edit Secretary General's Profie
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>

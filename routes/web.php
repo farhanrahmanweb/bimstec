@@ -69,10 +69,11 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     Route::resource('gallery', 'GalleryController');
     Route::resource('secretary', 'SecretaryController');
     Route::resource('profile', 'ProfileController');
-    Route::get('changePassword', 'ProfileController@changePassword');
+    Route::get('/changePassword', 'ProfileController@changePassword')->name('changePassword');
     Route::patch('changePassword', 'ProfileController@updatePassword');
     Route::resource('division', 'DivisionController');
     Route::resource('director', 'DirectorController');
+    Route::resource('secretaryProfile', 'SecretaryProfileController');
 });
 
 //Editor
