@@ -1101,7 +1101,6 @@ label {
     overflow: hidden;
     background: url("../images/select-arrow.png") no-repeat 97% 50%;
     border: 1px solid #d1d1d1;
-    margin-bottom: 20px
 }
 
 .select-style select {
@@ -15559,7 +15558,7 @@ figure {
     float: none;
     display: inline-block;
     vertical-align: middle;
-    margin: 0 23px;
+    margin: 0 23px 10px;
     padding: 3px 0
 }
 
@@ -17192,8 +17191,8 @@ nav.navbar.bootsnav.sidebar-nav li.dropdown ul.dropdown-menu {
 .main-title {
     padding: 10px 10px 10px 290px;
     text-align: center;
-    background: #1769b2;
-    position: fixed;
+    background: rgba(0, 0, 0, 0.70);
+    position: absolute;
     top: 0;
     z-index: 999;
     width: 100%;
@@ -17264,4 +17263,11 @@ nav.navbar.bootsnav.sidebar-nav li.dropdown ul.dropdown-menu {
 
 #focus_area figure img {
     width: 70px;
+}
+
+.feature-content a {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
 }

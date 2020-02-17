@@ -154,6 +154,11 @@ class HomeController extends Controller
         return view('frontend.bimstec-centres');
     }
 
+    public function areaCooperation()
+    {
+        return view('frontend.areas-cooperation');
+    }
+
     public function tradeInvestment()
     {
         return view('frontend.trade-investment');
