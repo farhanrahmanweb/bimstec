@@ -55,6 +55,7 @@ Route::post('/search-events', 'HomeController@searchEvents')->name('search.event
 
 Route::get('/photos/more/{id}', 'HomeController@photosMore')->name('photos.mores');
 Route::post('/search-documents', 'HomeController@searchDocuments')->name('search.document');
+Route::post('/download-documents', 'HomeController@downloadDocuments')->name('document.download');
 Route::get('/secretary-general/page/{id}', 'HomeController@secretaryPage')->name('secretary-page');
 Route::get('/subcategory/{id}', 'HomeController@subcategory')->name('subcategory');
 

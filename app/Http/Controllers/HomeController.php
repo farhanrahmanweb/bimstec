@@ -14,8 +14,10 @@ use App\SecretaryProfile;
 use App\Slider;
 use App\Subcategory;
 use App\Video;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -81,6 +83,26 @@ class HomeController extends Controller
         $data['years'] = Document::select('year')->groupBy('year')->get();
         $data['categorys'] = Category::with('subcategorys')->get();
         return view('frontend.documents', $data);
+    }
+
+    public function downloadDocuments(Request $request)
+    {
+        $this->validate($request, [
+            'id'=> 'required',
+            'password'=> 'required',
+        ]);
+
+        $document = Document::find($request->id);
+
+        $isMatched = Hash::check($request->password, $document->password);
+
+        if($isMatched == true){
+            $file_path = public_path('storage/document/'.$document->file);
+            return response()->download($file_path);
+        }else{
+            Toastr::error('Wrong Password', 'Failed');
+            return redirect()->back();
+        }
     }
 
     public function subcategory($id)

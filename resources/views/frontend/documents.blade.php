@@ -74,7 +74,20 @@
                                 <p class="text-medium line-height-25 text-medium-gray mb-2">
                                     {{$document->description}}
                                 </p>
-                                <a class="text-medium line-height-25 text-medium-gray text-right" href="{{asset('storage/document/'.$document->file)}}"><u>Download</u></a>
+                                <form action="{{route('document.download')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$document->id}}" class="form-control">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <input type="password" name="password" placeholder="Enter Password" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button type="submit" class="btn btn-success">Download</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

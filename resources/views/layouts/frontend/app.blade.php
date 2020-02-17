@@ -37,6 +37,9 @@
     <!--[if IE]>
     <script src="{{asset('frontend/js/html5shiv.js')}}"></script>
     <![endif]-->
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
     <!-- Scripts -->
 {{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
     <!-- Fonts -->
@@ -108,10 +111,22 @@
 <script type="text/javascript" src="{{asset('frontend/js/retina.min.js')}}"></script>
 <!-- Owl Carousel -->
 <script type="application/javascript" src="{{asset('frontend/js/owl.carousel.min.js')}}"></script>
+<script src="//cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+{!! Toastr::message() !!}
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js"></script>
 <!-- setting -->
 <script type="text/javascript" src="{{asset('frontend/js/main.js')}}"></script>
+<script >
+    @if($errors->any())
+    @foreach($errors->all() as $error)
+    toastr.error('{{ $error }}','Error',{
+        closeButton:true,
+        progressBar:true,
+    });
+    @endforeach
+    @endif
+</script>
 @stack('js')
 </body>
 </html>

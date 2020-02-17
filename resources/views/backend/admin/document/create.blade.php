@@ -43,6 +43,10 @@
                                 <input type="file" name="file" class="form-control">
                             </div>
                             <div class="form-group">
+                                <label class="form-control-label">Document Password</label>
+                                <input type="password" name="password" value="{{old('password')}}" placeholder="Document Password" class="form-control">
+                            </div>
+                            <div class="form-group">
                                 <div class="custom-control custom-checkbox">
                                     <input id="customCheck1" type="checkbox" name="is_publish" class="custom-control-input">
                                     <label for="customCheck1" class="custom-control-label">Publish Document?</label>
