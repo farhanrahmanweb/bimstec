@@ -69,13 +69,20 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     Route::resource('subcategory', 'SubcategoryController');
     Route::resource('video', 'VideoController');
     Route::resource('gallery', 'GalleryController');
-//    Route::resource('news', 'NewsController');
     Route::resource('secretary', 'SecretaryController');
+    Route::resource('profile', 'ProfileController');
+    Route::get('changePassword', 'ProfileController@changePassword');
+    Route::patch('changePassword', 'ProfileController@updatePassword');
+    Route::resource('division', 'DivisionController');
+    Route::resource('director', 'DirectorController');
 });
 
 //Editor
 Route::group(['as' => 'editor.', 'prefix' => 'editor', 'namespace' => 'Editor', 'middleware' => ['auth', 'editor']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::resource('profile', 'ProfileController');
+    Route::get('changePassword', 'ProfileController@changePassword');
+    Route::patch('changePassword', 'ProfileController@updatePassword');
 });
 //Member
 Route::group(['as' => 'member.', 'prefix' => 'member', 'namespace' => 'Member', 'middleware' => ['auth', 'member']], function () {

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Director;
+use App\Division;
 use App\Document;
 use App\Event;
 use App\Gallery;
@@ -111,7 +113,8 @@ class HomeController extends Controller
 
     public function directorsDivisions()
     {
-        return view('frontend.directors-divisions');
+        $directors = Director::with('division')->get();
+        return view('frontend.directors-divisions', compact('directors'));
     }
 
     public function bimstecOrganogram()

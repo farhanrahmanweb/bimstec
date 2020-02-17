@@ -8,6 +8,7 @@ use App\Event;
 use App\Document;
 use App\Gallery;
 use App\Video;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -17,11 +18,12 @@ class DashboardController extends Controller
         $galleryCount = Gallery::count();
         $videoCount = Video::count();
 
+
         $data = [
             'events'  => $eventCount,
             'documents'   => $documentCount,
             'galleries' => $galleryCount,
-            'videos' => $videoCount
+            'videos' => $videoCount,
         ];
 
         return view('backend.admin.dashboard')->with($data);
