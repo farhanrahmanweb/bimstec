@@ -57,7 +57,7 @@
                 <li class="{{Request::path() == 'secretary-general' ? 'dropdown active' : 'dropdown' }}">
                     <a href="{{route('secretary-general')}}" title="Secretary General">Secretary General</a>
                 </li>
-                <li class="{{Request::path() == 'areas-cooperation.php' ||
+                <li class="{{Request::path() == 'areas-cooperation' ||
                              Request::path() == 'trade-investment' ||
                              Request::path() == 'transport-communication' ||
                              Request::path() == 'energy' ||
@@ -74,7 +74,7 @@
                              Request::path() == 'cultural-cooperation' ||
                              Request::path() == 'climate-change'
                              ? 'dropdown active' : 'dropdown' }}">
-                    <a data-toggle="dropdown" href="areas-cooperation.php" title="Pages">Areas of Cooperation <i class="fas fa-angle-right"></i></a>
+                    <a href="{{route('areas-cooperation')}}" title="Areas of Cooperation">Areas of Cooperation <i class="fas fa-angle-right"></i></a>
                     <ul class="dropdown-menu second-level">
                         <li class="{{Request::path() == 'trade-investment' ? 'dropdown active' : 'dropdown' }}">
                             <a href="{{route('trade-investment')}}" title="Trade & Investment" data-toggle="dropdown">Trade & Investment <i class="fas fa-angle-right"></i></a>

@@ -51,9 +51,9 @@
     <!-- end page title section -->
     <!-- start tab style 01 section -->
     <section class="wow fadeIn">
-        <div class="container tab-style2">
+        <div class="container">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 tab-style3">
                     <!-- start tab navigation -->
                     <ul class="nav nav-tabs alt-font text-uppercase text-small text-center font-weight-600 justify-content-center">
                         @foreach($cttcs as $cttc)

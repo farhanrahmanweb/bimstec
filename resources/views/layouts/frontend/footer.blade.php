@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
             <!-- start copyright -->
-            <div class="col-lg-4 col-md-5 text-small text-left alt-font sm-margin-15px-bottom">
-                <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-10px-bottom font-weight-600">Office Address</div>
+            <div class="col-lg-4 col-md-5 text-small text-md-left text-center  alt-font sm-margin-15px-bottom">
+                <div class="widget-title-dark text-uppercase margin-10px-bottom font-weight-700 text-medium">Office Address</div>
                 <p class="m-0">BIMSTEC SECRETARIAT House No-N.W.(I)-06, Road No-53,<br>
                     Gulshan-02, Dhaka-1212, Bangladesh<br>
                     Email: <a href="mailto:communications@bimstec.org">communications@bimstec.org</a><br>
@@ -12,9 +12,9 @@
             </div>
             <!-- end copyright -->
             <!-- start social media -->
-            <div class="col-lg-4 col-md-5 text-small text-left alt-font sm-margin-15px-bottom">
-                <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-10px-bottom font-weight-600">Useful Links</div>
-                <ul class="p-md-0 list-style-none">
+            <div class="col-lg-4 col-md-5 text-small text-md-left  text-center alt-font sm-margin-15px-bottom">
+                <div class="widget-title-dark text-uppercase margin-10px-bottom font-weight-700 text-medium">Useful Links</div>
+                <ul class="p-md-0 list-style-none pl-0">
                     <li><a href="http://www.mofa.gov.bd/">Ministry of Foreign Affairs, Bangladesh</a></li>
                     <li><a href="http://www.mfa.gov.bt/">Ministry of Foreign Affairs, Bhutan</a></li>
                     <li><a href="http://www.mea.gov.in/">Ministry of External Affairs, India</a></li>
