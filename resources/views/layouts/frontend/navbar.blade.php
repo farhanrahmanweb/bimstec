@@ -129,8 +129,8 @@
                     </ul>
                 </li>
 
-                <li class="{{Request::path() == '#' ? 'dropdown active' : 'dropdown' }}">
-                    <a data-toggle="dropdown" href="#" title="Events">Events</a>
+                <li class="{{Request::path() == 'events' ? 'dropdown active' : 'dropdown' }}">
+                    <a data-toggle="dropdown" href="{{route('events')}}" title="Events">Events</a>
                 </li>
                 <li class="{{Request::path() == 'photos' || Request::path() == 'videos' ? 'dropdown active' : 'dropdown' }}">
                     <a data-toggle="dropdown" href="#" title="Gallery">Gallery <i class="fas fa-angle-right"></i></a>

@@ -15,11 +15,13 @@
 @endpush
 @section('content')
     <!-- start page title section -->
-    <section id="page_title" class="wow fadeIn cover-background background-position-center top-space" style="background-image:url({{asset('frontend/images/page-title-img.JPG')}});">
+    <section id="page_title" class="wow fadeIn cover-background background-position-center top-space"
+             style="background-image:url({{asset('frontend/images/page-title-img.JPG')}});">
         <div class="opacity-medium bg-extra-dark-gray"></div>
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-12 d-flex flex-column text-center justify-content-center page-title-large padding-30px-tb">
+                <div
+                    class="col-12 d-flex flex-column text-center justify-content-center page-title-large padding-30px-tb">
                     <!-- start page title -->
                     <h1 class="alt-font text-white font-weight-600 mb-0">General Secretary</h1>
                     <!-- start breadcrumb -->
@@ -137,7 +139,6 @@
                                         </div>
                                         {{--                                        <p>Danmodi, DHAKA</p>--}}
                                     </div>
-                                </div>
 
                                 <div class="col-12 col-lg-10 text-center text-lg-left">
                                     <div class="feature-content padding-10px-all bg-white box-shadow-light lg-padding-20px-all download_tb h-100 position-relative">

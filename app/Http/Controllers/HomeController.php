@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Director;
+use App\Division;
 use App\Document;
 use App\Event;
 use App\Gallery;
-use App\News;
 use App\Photo;
 use App\Secretary;
+use App\SecretaryProfile;
 use App\Slider;
+use App\Subcategory;
 use App\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +29,6 @@ class HomeController extends Controller
     {
         $data['sliders'] = Slider::where('is_publish', 1)->latest()->get();
         $data['upcomingEvents'] = Event::whereDate('event_start_date', '>=', date('Y-m-d'))->where('is_publish', 1)->get();
-        $data['latestNewses'] = News::where('is_publish', 1)->take(4)->latest()->get();
         return view('frontend.home', $data);
     }
 
@@ -36,18 +38,6 @@ class HomeController extends Controller
         return view('frontend.photos', compact('gallerys'));
     }
 
-    public function news()
-    {
-        $data['newses'] = News::where('is_publish', 1)->latest()->paginate(10);
-        $data['archiveyears'] = News::groupBy(['year', 'month'])->select(['year', 'month', DB::raw('count(*) as total')])->get();
-        return view('frontend.news', $data);
-    }
-
-    public function archiveNews($month, $year)
-    {
-        $data['archivenewses'] = News::where('is_publish', 1)->where('month', '=', $month)->where('year', '=', $year)->paginate(10);
-        return view('frontend.news-archive', $data);
-    }
 
     public function photosMore($id)
     {
@@ -59,7 +49,8 @@ class HomeController extends Controller
     {
         $statements = Secretary::where('type', '=', 'statement')->where('is_publish', 1)->latest()->get();
         $secretaryPages = Secretary::where('type', '=', 'page')->where('is_publish', 1)->latest()->get();
-        return view('frontend.secretary-general', compact('statements', 'secretaryPages'));
+        $profile = SecretaryProfile::first();
+        return view('frontend.secretary-general', compact('profile', 'statements', 'secretaryPages'));
     }
 
     public function secretaryPage($id)
@@ -74,19 +65,47 @@ class HomeController extends Controller
     {
         $data['documents'] = Document::where('is_publish', 1)->latest()->paginate(20);
         $data['years'] = Document::select('year')->groupBy('year')->get();
-        $data['categorys'] = Category::all();
+        $data['categorys'] = Category::with('subcategorys')->get();
         return view('frontend.documents', $data);
     }
 
     public function searchDocuments(Request $request)
     {
-        $year = $request->year;
-        $category = $request->category; // 'id' or 'name'
+        $data['documents'] = Document::whereYear('document_date', $request->year)->paginate(10);
+
+        if ($request->category_id != '' && $request->subcategory_id != '') {
+            $data['documents'] = Document::whereYear('document_date', $request->year)
+                ->where([['category_id', $request->category_id], ['subcategory_id', $request->subcategory_id]])->paginate(10);
+        }
+
         $data['years'] = Document::select('year')->groupBy('year')->get();
-        $data['categorys'] = Category::all();
-        $data['documents'] = Document::where('year', $year)
-            ->orWhere('category_id', $category)->paginate(10);
+        $data['categorys'] = Category::with('subcategorys')->get();
         return view('frontend.documents', $data);
+    }
+
+    public function subcategory($id)
+    {
+        $subcategoriys = Subcategory::where('category_id', $id)->get();
+        return json_encode($subcategoriys);
+    }
+
+    public function events()
+    {
+        $data = Event::where('is_publish', 1)->get();
+        return view('frontend.events', compact('data'));
+    }
+
+    public function searchEvents(Request $request)
+    {
+        $data = Event::whereDate('event_start_date', '>=', $request->event_start_date)
+            ->whereDate('event_end_date', '<=', $request->event_end_date)
+            ->where('is_publish', 1)->get();
+
+        if ($request->event_location != '') {
+            $data = Event::whereDate('event_start_date', '>=', $request->event_start_date)->whereDate('event_end_date', '<=', $request->event_end_date)->where('event_location', $request->event_location)->where('is_publish', 1)->get();;
+        }
+
+        return view('frontend.events', compact('data'));
     }
 
     public function about()
@@ -111,7 +130,8 @@ class HomeController extends Controller
 
     public function directorsDivisions()
     {
-        return view('frontend.directors-divisions');
+        $directors = Director::with('division')->get();
+        return view('frontend.directors-divisions', compact('directors'));
     }
 
     public function bimstecOrganogram()
