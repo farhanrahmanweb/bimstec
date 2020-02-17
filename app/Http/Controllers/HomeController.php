@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\CttcPage;
 use App\Director;
 use App\Division;
 use App\Document;
@@ -260,7 +261,8 @@ class HomeController extends Controller
 
     public function counterTerrorismTransnationalCrime()
     {
-        return view('frontend.counter-terrorism-transnational-crime');
+        $cttcs = CttcPage::all();
+        return view('frontend.counter-terrorism-transnational-crime', compact('cttcs'));
     }
 
     public function environmentDisasterManagement()

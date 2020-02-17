@@ -79,6 +79,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     Route::resource('division', 'DivisionController');
     Route::resource('director', 'DirectorController');
     Route::resource('secretaryProfile', 'SecretaryProfileController');
+    Route::resource('cttcPage', 'CttcPageController');
 });
 
 //Editor
