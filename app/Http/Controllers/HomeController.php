@@ -88,18 +88,18 @@ class HomeController extends Controller
     public function downloadDocuments(Request $request)
     {
         $this->validate($request, [
-            'id'=> 'required',
-            'password'=> 'required',
+            'id' => 'required',
+            'password' => 'required',
         ]);
 
         $document = Document::find($request->id);
 
         $isMatched = Hash::check($request->password, $document->password);
 
-        if($isMatched == true){
-            $file_path = public_path('storage/document/'.$document->file);
+        if ($isMatched == true) {
+            $file_path = public_path('storage/document/' . $document->file);
             return response()->download($file_path);
-        }else{
+        } else {
             Toastr::error('Wrong Password', 'Failed');
             return redirect()->back();
         }
@@ -128,6 +128,43 @@ class HomeController extends Controller
         }
 
         return view('frontend.events', compact('data'));
+    }
+
+    public function search(Request $request)
+    {
+        if ($request->type === 'all') {
+            $keyword = "%".$request->get('query')."%";
+            $events = Event::where(DB::raw('upper(event_title)'), 'like', strtoupper($keyword))->get();
+            $documents = Document::where(DB::raw('upper(title)'), 'like', strtoupper($keyword))->get();
+
+            $merged = $events->concat($documents);
+
+            $data['results'] = $merged;
+            $data['query'] = $request->get('query');
+
+            return view('frontend.search-results', $data);
+        }
+
+        if ($request->type === 'events') {
+            $keyword = "%".$request->get('query')."%";
+            $events = Event::where(DB::raw('upper(event_title)'), 'like', strtoupper($keyword))->get();
+
+            $data['results'] = $events;
+            $data['query'] = $request->get('query');
+
+            return view('frontend.search-results', $data);
+        }
+
+        if ($request->type === 'documents') {
+            $keyword = "%".$request->get('query')."%";
+            $documents = Document::where(DB::raw('upper(title)'), 'like', strtoupper($keyword))->get();
+
+            $data['results'] = $documents;
+            $data['query'] = $request->get('query');
+
+            return view('frontend.search-results', $data);
+        }
+
     }
 
     public function about()

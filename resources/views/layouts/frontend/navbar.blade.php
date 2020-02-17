@@ -154,9 +154,11 @@
     </div>
     <div class="col-12 position-absolute top-auto bottom-0 left-0 width-100 padding-20px-bottom sm-padding-15px-bottom">
         <div class="footer-holder">
-            <form class="navbar-form no-padding search-box" role="search">
+            <form action="{{route('search')}}" method="POST" class="navbar-form no-padding search-box" role="search">
+                @csrf
+                <input type="hidden" value="all" name="type">
                 <div class="input-group add-on">
-                    <input class="form-control" placeholder="Enter your keywords..." name="srch-term" id="srch-term" type="text">
+                    <input class="form-control" placeholder="Enter your keywords..." name="query" id="srch-term" type="text">
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
                     </div>

@@ -52,6 +52,7 @@ Route::get('/climate-change', 'HomeController@climateChange')->name('climate-cha
 Route::get('/documents', 'HomeController@documents')->name('documents');
 Route::get('/events', 'HomeController@events')->name('events');
 Route::post('/search-events', 'HomeController@searchEvents')->name('search.events');
+Route::post('/search', 'HomeController@search')->name('search');
 
 Route::get('/photos/more/{id}', 'HomeController@photosMore')->name('photos.mores');
 Route::post('/search-documents', 'HomeController@searchDocuments')->name('search.document');
