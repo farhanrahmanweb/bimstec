@@ -34,7 +34,6 @@ Route::get('/secretary-general', 'HomeController@secretaryGeneral')->name('secre
 Route::get('/bimstec-centres', 'HomeController@bimstecCentres')->name('bimstec-centres');
 Route::get('/photos', 'HomeController@photos')->name('photos');
 Route::get('/videos', 'HomeController@videos')->name('videos');
-Route::get('/bimstec-news', 'HomeController@news')->name('bimstec-news');
 Route::get('/trade-investment', 'HomeController@tradeInvestment')->name('trade-investment');
 Route::get('/transport-communication', 'HomeController@transportCommunication')->name('transport-communication');
 Route::get('/energy', 'HomeController@energy')->name('energy');
@@ -52,7 +51,6 @@ Route::get('/cultural-cooperation', 'HomeController@culturalCooperation')->name(
 Route::get('/climate-change', 'HomeController@climateChange')->name('climate-change');
 Route::get('/documents', 'HomeController@documents')->name('documents');
 
-Route::get('/news-archive/{month}/{year}', 'HomeController@archiveNews')->name('news-archive');
 Route::get('/photos/more/{id}', 'HomeController@photosMore')->name('photos.mores');
 Route::post('/search-documents', 'HomeController@searchDocuments')->name('search.document');
 Route::get('/secretary-general/page/{id}', 'HomeController@secretaryPage')->name('secretary-page');

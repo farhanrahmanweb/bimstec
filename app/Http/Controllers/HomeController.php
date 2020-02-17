@@ -8,7 +8,6 @@ use App\Division;
 use App\Document;
 use App\Event;
 use App\Gallery;
-use App\News;
 use App\Photo;
 use App\Secretary;
 use App\Slider;
@@ -28,7 +27,6 @@ class HomeController extends Controller
     {
         $data['sliders'] = Slider::where('is_publish', 1)->latest()->get();
         $data['upcomingEvents'] = Event::whereDate('event_start_date', '>=', date('Y-m-d'))->where('is_publish', 1)->get();
-        $data['latestNewses'] = News::where('is_publish', 1)->take(4)->latest()->get();
         return view('frontend.home', $data);
     }
 
@@ -38,18 +36,9 @@ class HomeController extends Controller
         return view('frontend.photos', compact('gallerys'));
     }
 
-    public function news()
-    {
-        $data['newses'] = News::where('is_publish', 1)->latest()->paginate(10);
-        $data['archiveyears'] = News::groupBy(['year', 'month'])->select(['year', 'month', DB::raw('count(*) as total')])->get();
-        return view('frontend.news', $data);
-    }
 
-    public function archiveNews($month, $year)
-    {
-        $data['archivenewses'] = News::where('is_publish', 1)->where('month', '=', $month)->where('year', '=', $year)->paginate(10);
-        return view('frontend.news-archive', $data);
-    }
+
+
 
     public function photosMore($id)
     {

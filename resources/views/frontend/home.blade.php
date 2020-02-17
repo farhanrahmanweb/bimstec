@@ -344,41 +344,6 @@
     <!-- end feature box section -->
 
 
-    <!-- start blog section -->
-    <section id="news" class="border-top border-color-extra-light-gray wow fadeIn">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h5 class="text-uppercase alt-font text-extra-dark-gray margin-10px-top margin-20px-bottom font-weight-700 md-width-100 sm-width-100">Latest News</h5>
-                    <span class="separator-line-horrizontal-medium-light2 bg-deep-pink d-table mx-auto width-100px"></span>
-                </div>
-            </div>
-            <div class="row margin-100px-top md-margin-70px-top sm-margin-50px-top">
-                <!-- start blog post item -->
-                @foreach($latestNewses as $key=>$news)
-                    <div class="col-12 col-lg-3 col-md-6 md-margin-50px-bottom sm-margin-30px-bottom last-paragraph-no-margin wow fadeInUp">
-                        <div class="blog-post blog-post-style1 text-center text-md-left">
-                            <div class="blog-post-images overflow-hidden margin-25px-bottom md-margin-20px-bottom">
-                                <a href="{{$news->news_link}}" target="_blank">
-                                    <img src="{{asset('storage/news/'. $news->image)}}" alt="">
-                                </a>
-                            </div>
-                            <div class="post-details">
-                                <span
-                                    class="post-author text-extra-small text-medium-gray text-uppercase d-block margin-10px-bottom sm-margin-5px-bottom">{{\Carbon\Carbon::parse($news->news_date, 'UTC')->isoFormat('Do MMMM YYYY')}}</span>
-                                <a href="{{$news->news_link}}" target="_blank" class="post-title text-medium text-extra-dark-gray width-90 md-width-100 d-block">
 
-                                    {!! \Illuminate\Support\Str::substr($news->description, 0, 100 )!!}..
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-            @endforeach
-            <!-- end blog post item -->
-                <a class="wow fadeInUp btn btn-medium btn-black margin-five-top mx-auto d-table d-lg-inline-block md-margin-lr-auto" data-wow-delay="0.6s" href="{{route('bimstec-news')}}">View All</a>
-            </div>
-        </div>
-    </section>
-    <!-- end blog section -->
 
 @endsection
