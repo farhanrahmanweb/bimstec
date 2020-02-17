@@ -12,6 +12,7 @@ use App\Photo;
 use App\Secretary;
 use App\SecretaryProfile;
 use App\Slider;
+use App\Subcategory;
 use App\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,9 +39,6 @@ class HomeController extends Controller
     }
 
 
-
-
-
     public function photosMore($id)
     {
         $photos = Photo::where('gallery_id', $id)->where("type", "=", "gallery")->get();
@@ -52,7 +50,7 @@ class HomeController extends Controller
         $statements = Secretary::where('type', '=', 'statement')->where('is_publish', 1)->latest()->get();
         $secretaryPages = Secretary::where('type', '=', 'page')->where('is_publish', 1)->latest()->get();
         $profile = SecretaryProfile::first();
-        return view('frontend.secretary-general', compact('profile','statements', 'secretaryPages'));
+        return view('frontend.secretary-general', compact('profile', 'statements', 'secretaryPages'));
     }
 
     public function secretaryPage($id)
@@ -67,19 +65,47 @@ class HomeController extends Controller
     {
         $data['documents'] = Document::where('is_publish', 1)->latest()->paginate(20);
         $data['years'] = Document::select('year')->groupBy('year')->get();
-        $data['categorys'] = Category::all();
+        $data['categorys'] = Category::with('subcategorys')->get();
         return view('frontend.documents', $data);
     }
 
     public function searchDocuments(Request $request)
     {
-        $year = $request->year;
-        $category = $request->category; // 'id' or 'name'
+        $data['documents'] = Document::whereYear('document_date', $request->year)->paginate(10);
+
+        if ($request->category_id != '' && $request->subcategory_id != '') {
+            $data['documents'] = Document::whereYear('document_date', $request->year)
+                ->where([['category_id', $request->category_id], ['subcategory_id', $request->subcategory_id]])->paginate(10);
+        }
+
         $data['years'] = Document::select('year')->groupBy('year')->get();
-        $data['categorys'] = Category::all();
-        $data['documents'] = Document::where('year', $year)
-            ->orWhere('category_id', $category)->paginate(10);
+        $data['categorys'] = Category::with('subcategorys')->get();
         return view('frontend.documents', $data);
+    }
+
+    public function subcategory($id)
+    {
+        $subcategoriys = Subcategory::where('category_id', $id)->get();
+        return json_encode($subcategoriys);
+    }
+
+    public function events()
+    {
+        $data = Event::where('is_publish', 1)->get();
+        return view('frontend.events', compact('data'));
+    }
+
+    public function searchEvents(Request $request)
+    {
+        $data = Event::whereDate('event_start_date', '>=', $request->event_start_date)
+            ->whereDate('event_end_date', '<=', $request->event_end_date)
+            ->where('is_publish', 1)->get();
+
+        if ($request->event_location != '') {
+            $data = Event::whereDate('event_start_date', '>=', $request->event_start_date)->whereDate('event_end_date', '<=', $request->event_end_date)->where('event_location', $request->event_location)->where('is_publish', 1)->get();;
+        }
+
+        return view('frontend.events', compact('data'));
     }
 
     public function about()

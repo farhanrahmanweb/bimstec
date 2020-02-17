@@ -50,10 +50,13 @@ Route::get('/people-to-people-contact', 'HomeController@peopleToPeopleContact')-
 Route::get('/cultural-cooperation', 'HomeController@culturalCooperation')->name('cultural-cooperation');
 Route::get('/climate-change', 'HomeController@climateChange')->name('climate-change');
 Route::get('/documents', 'HomeController@documents')->name('documents');
+Route::get('/events', 'HomeController@events')->name('events');
+Route::post('/search-events', 'HomeController@searchEvents')->name('search.events');
 
 Route::get('/photos/more/{id}', 'HomeController@photosMore')->name('photos.mores');
 Route::post('/search-documents', 'HomeController@searchDocuments')->name('search.document');
 Route::get('/secretary-general/page/{id}', 'HomeController@secretaryPage')->name('secretary-page');
+Route::get('/subcategory/{id}', 'HomeController@subcategory')->name('subcategory');
 
 
 //Admin

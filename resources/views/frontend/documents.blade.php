@@ -37,7 +37,7 @@
                         </select>
                     </div>
                     <div class="col-sm-3">
-                        <select name="category_id" class="custom-select">
+                        <select id="category_id" name="category_id" class="custom-select">
                             <option value="">Select Category</option>
                             @foreach($categorys as $key=>$category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
@@ -47,6 +47,7 @@
                     <div class="col-sm-3">
                         <select name="subcategory_id" class="custom-select">
                             <option value="">Select SubCategory</option>
+
                         </select>
                     </div>
                     <div class="col-sm-2">
@@ -89,11 +90,12 @@
 @push('js')
     <script >
         $(document).ready(function() {
-            $('select[name="category_id"]').on('change', function() {
+            $('#category_id').on('change', function() {
                 var catID = $(this).val();
                 if(catID) {
+                    console.log("hello");
                     $.ajax({
-                        url: '/admin/subcategory/ajax/'+catID,
+                        url: '/subcategory/'+catID,
                         type: "GET",
                         dataType: "json",
                         success:function(data) {
