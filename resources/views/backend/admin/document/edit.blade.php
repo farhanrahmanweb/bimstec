@@ -49,6 +49,14 @@
                                 <input type="file" name="file" class="form-control">
                             </div>
                             <div class="form-group">
+                                <label class="form-control-label">Old Password</label>
+                                <input type="password" name="old_password" value="{{old('password')}}" placeholder="Old Password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">New Password</label>
+                                <input type="password" name="new_password" value="{{old('password')}}" placeholder="New Password" class="form-control">
+                            </div>
+                            <div class="form-group">
                                 <div class="custom-control custom-checkbox">
                                     <input id="customCheck1" type="checkbox" name="is_publish" class="custom-control-input" @if($document->is_publish==1) checked @endif>
                                     <label for="customCheck1" class="custom-control-label">Publish Document?</label>

@@ -65,13 +65,19 @@
                     <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
                         <li class="sidebar-list-item">
                             <a href="{{route('admin.secretary.index')}}"
-                               class="sidebar-link text-muted pl-lg-5  {{Request::is('admin/category*') ? 'active' : ''}}">Secretary
+                               class="sidebar-link text-muted pl-lg-5  {{Request::is('admin/secretary*') ? 'active' : ''}}">Secretary
                                 General's</a>
                         </li>
                         <li class="sidebar-list-item">
                             <a href="{{route('admin.secretaryProfile.edit', 1)}}"
                                class="sidebar-link text-muted pl-lg-5  {{Request::is('admin/category*') ? 'active' : ''}}">
                                 Edit Secretary General's Profie
+                            </a>
+                        </li>
+                        <li class="sidebar-list-item">
+                            <a href="{{route('admin.cttcPage.index')}}"
+                               class="sidebar-link text-muted pl-lg-5  {{Request::is('admin/cttcPage*') ? 'active' : ''}}">
+                                Counter-Terrorism and Transnational Crime Page
                             </a>
                         </li>
                     </ul>

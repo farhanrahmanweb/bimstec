@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -58,7 +59,8 @@ class DocumentController extends Controller
             'subcategory_id'=> 'required',
             'description'=> 'required',
             'document_date'=> 'required',
-            'file'=> 'required|mimes:pdf,xlx,csv'
+            'file'=> 'required|mimes:pdf,xlx,csv',
+            'password'=> 'required',
         ]);
 
         $image = $request->file('file');
@@ -84,6 +86,7 @@ class DocumentController extends Controller
         $document->year = date('Y');
         $document->document_date = $request->document_date;
         $document->file = $fileName;
+        $document->password = Hash::make($request->password);
 
         if(isset($request->is_publish))
         {
@@ -136,46 +139,54 @@ class DocumentController extends Controller
             'subcategory_id'=> 'required',
             'description'=> 'required',
             'document_date'=> 'required',
-            'file'=> 'mimes:pdf,xlx,csv'
+            'file'=> 'mimes:pdf,xlx,csv',
+            'old_password'=> 'required',
+            'new_password'=> 'required',
         ]);
 
         $image = $request->file('file');
         $slug = Str::slug($request->title, '-');
         $document = Document::find($id);
-        if(isset($image)){
-            $currentDate = Carbon::now()->toDateString();
-            $fileName = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+        $isMatched = Hash::check($request->old_password, $document->password);
+        if($isMatched == true) {
+            if (isset($image)) {
+                $currentDate = Carbon::now()->toDateString();
+                $fileName = $slug . '-' . $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
 
-            if(!Storage::disk('public')->exists('document'))
-            {
-                Storage::disk('public')->makeDirectory('document');
+                if (!Storage::disk('public')->exists('document')) {
+                    Storage::disk('public')->makeDirectory('document');
+                }
+                if (Storage::disk('public')->exists('document/' . $document->file)) {
+                    Storage::disk('public')->delete('document/' . $document->file);
+                }
+                $request->file->move(public_path('storage/document/'), $fileName);
+            } else {
+                $fileName = $document->file;
             }
-            if(Storage::disk('public')->exists('document/'.$document->file))
-            {
-                Storage::disk('public')->delete('document/'.$document->file);
-            }
-            $request->file->move(public_path('storage/document/'), $fileName);
+
+            $document->title = $request->title;
+            $document->description = $request->description;
+            $document->category_id = $request->category_id;
+            $document->subcategory_id = $request->subcategory_id;
+            $document->year = date('Y');
+            $document->document_date = $request->document_date;
+            $document->file = $fileName;
+            $document->password = Hash::make($request->new_password);
+
+            if (isset($request->is_publish)) {
+                $document->is_publish = true;
+            } else {
+                $document->is_publish = false;
+            };
+            $document->save();
+            Toastr::success("Documents Update Successfully", "Document");
+            return redirect()->route('admin.document.index');
         }else{
-            $fileName = $document->file;
+            Toastr::error("Invalid Password", "Document");
+            $categorys = Category::all();
+            $subcategorys = Subcategory::all();
+            return redirect()->route('admin.document.edit',  compact('document', 'categorys', 'subcategorys'));
         }
-
-        $document->title = $request->title;
-        $document->description = $request->description;
-        $document->category_id = $request->category_id;
-        $document->subcategory_id = $request->subcategory_id;
-        $document->year = date('Y');
-        $document->document_date = $request->document_date;
-        $document->file = $fileName;
-
-        if(isset($request->is_publish))
-        {
-            $document->is_publish = true;
-        }else{
-            $document->is_publish = false;
-        };
-        $document->save();
-        Toastr::success("Documents Update Successfully", "Document");
-        return redirect()->route('admin.document.index');
     }
 
     /**

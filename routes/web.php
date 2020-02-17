@@ -54,9 +54,11 @@ Route::get('/climate-change', 'HomeController@climateChange')->name('climate-cha
 Route::get('/documents', 'HomeController@documents')->name('documents');
 Route::get('/events', 'HomeController@events')->name('events');
 Route::post('/search-events', 'HomeController@searchEvents')->name('search.events');
+Route::post('/search', 'HomeController@search')->name('search');
 
 Route::get('/photos/more/{id}', 'HomeController@photosMore')->name('photos.mores');
 Route::post('/search-documents', 'HomeController@searchDocuments')->name('search.document');
+Route::post('/download-documents', 'HomeController@downloadDocuments')->name('document.download');
 Route::get('/secretary-general/page/{id}', 'HomeController@secretaryPage')->name('secretary-page');
 Route::get('/subcategory/{id}', 'HomeController@subcategory')->name('subcategory');
 
@@ -79,6 +81,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     Route::resource('division', 'DivisionController');
     Route::resource('director', 'DirectorController');
     Route::resource('secretaryProfile', 'SecretaryProfileController');
+    Route::resource('cttcPage', 'CttcPageController');
 });
 
 //Editor

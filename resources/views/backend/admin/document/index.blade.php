@@ -26,7 +26,7 @@
                             <tbody>
                             @foreach($documents as $key=>$document)
                                 <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row">{{$key+1}}</th>
                                     <td>{{$document->title}}</td>
                                     <td>{{\Carbon\Carbon::parse($document->document_date, 'UTC')->isoFormat('Do MMMM YYYY')}}</td>
                                     <td>{{$document->category->name}}</td>

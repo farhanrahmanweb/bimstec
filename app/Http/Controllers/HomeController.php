@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\CttcPage;
 use App\Director;
 use App\Division;
 use App\Document;
@@ -14,8 +15,10 @@ use App\SecretaryProfile;
 use App\Slider;
 use App\Subcategory;
 use App\Video;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -83,6 +86,26 @@ class HomeController extends Controller
         return view('frontend.documents', $data);
     }
 
+    public function downloadDocuments(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required',
+            'password' => 'required',
+        ]);
+
+        $document = Document::find($request->id);
+
+        $isMatched = Hash::check($request->password, $document->password);
+
+        if ($isMatched == true) {
+            $file_path = public_path('storage/document/' . $document->file);
+            return response()->download($file_path);
+        } else {
+            Toastr::error('Wrong Password', 'Failed');
+            return redirect()->back();
+        }
+    }
+
     public function subcategory($id)
     {
         $subcategoriys = Subcategory::where('category_id', $id)->get();
@@ -106,6 +129,43 @@ class HomeController extends Controller
         }
 
         return view('frontend.events', compact('data'));
+    }
+
+    public function search(Request $request)
+    {
+        if ($request->type === 'all') {
+            $keyword = "%".$request->get('query')."%";
+            $events = Event::where(DB::raw('upper(event_title)'), 'like', strtoupper($keyword))->get();
+            $documents = Document::where(DB::raw('upper(title)'), 'like', strtoupper($keyword))->get();
+
+            $merged = $events->concat($documents);
+
+            $data['results'] = $merged;
+            $data['query'] = $request->get('query');
+
+            return view('frontend.search-results', $data);
+        }
+
+        if ($request->type === 'events') {
+            $keyword = "%".$request->get('query')."%";
+            $events = Event::where(DB::raw('upper(event_title)'), 'like', strtoupper($keyword))->get();
+
+            $data['results'] = $events;
+            $data['query'] = $request->get('query');
+
+            return view('frontend.search-results', $data);
+        }
+
+        if ($request->type === 'documents') {
+            $keyword = "%".$request->get('query')."%";
+            $documents = Document::where(DB::raw('upper(title)'), 'like', strtoupper($keyword))->get();
+
+            $data['results'] = $documents;
+            $data['query'] = $request->get('query');
+
+            return view('frontend.search-results', $data);
+        }
+
     }
 
     public function about()
@@ -206,7 +266,8 @@ class HomeController extends Controller
 
     public function counterTerrorismTransnationalCrime()
     {
-        return view('frontend.counter-terrorism-transnational-crime');
+        $cttcs = CttcPage::all();
+        return view('frontend.counter-terrorism-transnational-crime', compact('cttcs'));
     }
 
     public function environmentDisasterManagement()
