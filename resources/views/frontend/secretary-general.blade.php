@@ -74,9 +74,11 @@
             <div class="tab-content">
                 <!-- start tab content -->
                 <div class="tab-pane med-text fade in active show Profile" id="tab_sec1">
-                    <div class="row align-items-center">
-                        {!! $profile !!}
-                    </div>
+                    @if($profile != null)
+                        <div class="row align-items-center">
+                            {!! $profile->content !!}
+                        </div>
+                    @endif
                 </div>
                 <!-- end tab content -->
                 <!-- start tab content -->
