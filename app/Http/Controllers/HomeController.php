@@ -52,7 +52,7 @@ class HomeController extends Controller
     {
         $statements = Secretary::where('type', '=', 'statement')->where('is_publish', 1)->latest()->get();
         $secretaryPages = Secretary::where('type', '=', 'page')->where('is_publish', 1)->latest()->get();
-        $profile = DB::table('secretary_profiles')->first();
+        $profile = DB::table('secretary_profiles')->first()->content;
         return view('frontend.secretary-general', compact('profile', 'statements', 'secretaryPages'));
     }
 
