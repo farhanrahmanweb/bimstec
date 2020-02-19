@@ -2,11 +2,13 @@
 @section('title', 'Home- Bay of Bengal Initiative for Multi-Sectoral Technical and Economic Cooperation')
 @section('content')
     <!-- start page title section -->
-    <section id="page_title" class="wow fadeIn cover-background background-position-center top-space" style="background-image:url({{asset('frontend/images/page-title-img.JPG')}});">
+    <section id="page_title" class="wow fadeIn cover-background background-position-center top-space"
+             style="background-image:url({{asset('frontend/images/page-title-img.JPG')}});">
         <div class="opacity-medium bg-extra-dark-gray"></div>
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-12 d-flex flex-column text-center justify-content-center page-title-large padding-30px-tb">
+                <div
+                    class="col-12 d-flex flex-column text-center justify-content-center page-title-large padding-30px-tb">
                     <!-- start page title -->
                     <h1 class="alt-font text-white font-weight-600 mb-0">Documents</h1>
                     <!-- start breadcrumb -->
@@ -56,7 +58,9 @@
                         </div>
                     </div>
                     <div class="col-sm-2">
-                        <button type="submit" class="btn d-inline-block btn-dark-gray btn-small text-extra-small">Search</button>
+                        <button type="submit" class="btn d-inline-block btn-dark-gray btn-small text-extra-small">
+                            Search
+                        </button>
                         {{--                        <a href="{{route('documents')}}" class="btn d-inline-block btn-warning">Clear</a>--}}
                     </div>
                 </div>
@@ -66,14 +70,19 @@
                     {{--                {{$document}}--}}
                     <div class="row margin-10px-bottom">
                         <div class="col-12 col-md-2 md-margin-30px-bottom last-paragraph-no-margin">
-                            <div class="feature-content padding-10px-all bg-white box-shadow-light lg-padding-20px-all text-center">
-                                <div class="alt-font font-weight-600 text-extra-dark-gray"><span class="text-deep-pink margin-5px-right" style="font-size: 25px;">{{\Carbon\Carbon::parse($document->document_date, 'UTC')->isoFormat('Do MMM')}} <br></span> {{\Carbon\Carbon::parse($document->document_date, 'UTC')->isoFormat('YYYY')}}
+                            <div
+                                class="feature-content padding-10px-all bg-white box-shadow-light lg-padding-20px-all text-center">
+                                <div class="alt-font font-weight-600 text-extra-dark-gray"><span
+                                        class="text-deep-pink margin-5px-right" style="font-size: 25px;">{{\Carbon\Carbon::parse($document->document_date, 'UTC')->isoFormat('Do MMM')}} <br></span> {{\Carbon\Carbon::parse($document->document_date, 'UTC')->isoFormat('YYYY')}}
                                 </div>
-                                <p>{{$document->category->name}}</p>
+                                @if($document->category !== null)
+                                    <p>{{$document->category->name}}</p>
+                                @endif
                             </div>
                         </div>
                         <div class="col-12 col-lg-10 text-center text-lg-left wow fadeIn">
-                            <div class="feature-content padding-10px-all bg-white box-shadow-light lg-padding-20px-all download_tb h-100 position-relative">
+                            <div
+                                class="feature-content padding-10px-all bg-white box-shadow-light lg-padding-20px-all download_tb h-100 position-relative">
                                 <h6 class="mb-0">{{$document->title}}</h6>
                                 <p class="text-medium line-height-25 text-medium-gray mb-2">
                                     {{$document->description}}
@@ -84,7 +93,8 @@
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <input type="password" name="password" placeholder="Enter Password" class="form-control" required>
+                                                <input type="password" name="password" placeholder="Enter Password"
+                                                       class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
@@ -112,7 +122,7 @@
                 var catID = $(this).val();
                 if (catID) {
                     $.ajax({
-                        url: '/admin/subcategory/ajax/' + catID,
+                        url: '/subcategory' + catID,
                         type: "GET",
                         dataType: "json",
                         success: function (data) {
