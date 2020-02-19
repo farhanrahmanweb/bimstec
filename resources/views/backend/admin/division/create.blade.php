@@ -37,6 +37,7 @@
 @push('js')
     <script >
         $(function ($) {
+            CKEDITOR.replace( 'division_description');
             CKEDITOR.replace( 'division_sectors_activities');
         })(jQuery)
 

@@ -57,6 +57,10 @@
                     <!-- start tab navigation -->
                     <ul class="nav nav-tabs alt-font text-uppercase text-small text-center font-weight-600 justify-content-center">
                         @foreach($cttcs as $cttc)
+                            @if ($loop->first)
+                                <li class="nav-item active"><a class="nav-link active" href="{{'#tab_'.$cttc->id}}"
+                                                        data-toggle="tab">{{$cttc->title}}</a></li>
+                            @endif
                             <li class="nav-item"><a class="nav-link" href="{{'#tab_'.$cttc->id}}"
                                                     data-toggle="tab">{{$cttc->title}}</a></li>
                         @endforeach
@@ -67,6 +71,14 @@
             <div class="tab-content">
             @foreach($cttcs as $cttc)
                 <!-- start tab content -->
+                    @if ($loop->first)
+                        <div class="tab-pane med-text fade in active show" id="{{'tab_'.$cttc->id}}">
+                            <div class="col-12 col-lg-12 col-md-12 wow fadeIn" data-wow-delay="0.6s"
+                                 style="padding-top: 5px;">
+                                {!! $cttc->content !!}
+                            </div>
+                        </div>
+                    @endif
                     <div class="tab-pane med-text fade in show" id="{{'tab_'.$cttc->id}}">
                         <div class="col-12 col-lg-12 col-md-12 wow fadeIn" data-wow-delay="0.6s"
                              style="padding-top: 5px;">
