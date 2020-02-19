@@ -75,7 +75,7 @@
                 <!-- start tab content -->
                 <div class="tab-pane med-text fade in active show Profile" id="tab_sec1">
                     <div class="row align-items-center">
-                        {!! $profile->get('content') !!}
+                        {!! $profile->content !!}
                     </div>
                 </div>
                 <!-- end tab content -->
