@@ -25,7 +25,7 @@
                             <tbody>
                             @foreach($secretarys as $key=>$secretary)
                                 <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row">{{$key +1}}</th>
                                     <td>{{$secretary->title}}</td>
                                     <td>{{\Carbon\Carbon::parse($secretary->date, 'UTC')->isoFormat('Do MMMM YYYY')}}</td>
                                     <td>{{$secretary->type}}</td>

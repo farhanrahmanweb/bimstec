@@ -40,7 +40,7 @@ class SecretaryProfileController extends Controller
         ]);
 
         $secretary = SecretaryProfile::find(1);
-        $secretary->content = $request->secretary_content;
+        $secretary->content = $request->get('secretary_content');
 
         $secretary->save();
 

@@ -65,6 +65,9 @@
 
 @push('js')
     <script >
+        $(function ($) {
+            CKEDITOR.replace( 'description', {height: 500});
+        })(jQuery)
         //$(function ($) {
             $('#document_date').datepicker({
                 uiLibrary: 'bootstrap4',

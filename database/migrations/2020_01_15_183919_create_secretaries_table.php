@@ -15,7 +15,7 @@ class CreateSecretariesTable extends Migration
     {
         Schema::create('secretaries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title')->nullable();
+            $table->longText('title')->nullable();
             $table->longText('description')->nullable();
             $table->string('type')->nullable();
             $table->date('date')->nullable();

@@ -20,7 +20,7 @@ class SecretaryController extends Controller
      */
     public function index()
     {
-        $secretarys = Secretary::latest()->paginate(10);
+        $secretarys = Secretary::orderBy('date', 'DESC')->paginate(10);
         return view('backend.admin.secretary.index', compact('secretarys'));
     }
 

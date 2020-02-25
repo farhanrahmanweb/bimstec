@@ -23,6 +23,14 @@
             margin-left: 15px;
             padding: 20px !important;
         }
+
+        .tab-content a{
+            color: #42b250;
+        }
+        .tab-content a:hover{
+            text-decoration: underline;
+            color: #30833b;
+        }
     </style>
     <!-- start page title section -->
     <section id="page_title" class="wow fadeIn cover-background background-position-center top-space"
@@ -60,9 +68,10 @@
                             @if ($loop->first)
                                 <li class="nav-item active"><a class="nav-link active" href="{{'#tab_'.$cttc->id}}"
                                                         data-toggle="tab">{{$cttc->title}}</a></li>
-                            @endif
-                            <li class="nav-item"><a class="nav-link" href="{{'#tab_'.$cttc->id}}"
+                            @else
+                                <li class="nav-item"><a class="nav-link" href="{{'#tab_'.$cttc->id}}"
                                                     data-toggle="tab">{{$cttc->title}}</a></li>
+                            @endif
                         @endforeach
                     </ul>
                     <!-- end tab navigation -->
@@ -78,13 +87,14 @@
                                 {!! $cttc->content !!}
                             </div>
                         </div>
-                    @endif
-                    <div class="tab-pane med-text fade in show" id="{{'tab_'.$cttc->id}}">
-                        <div class="col-12 col-lg-12 col-md-12 wow fadeIn" data-wow-delay="0.6s"
-                             style="padding-top: 5px;">
-                            {!! $cttc->content !!}
+                    @else
+                        <div class="tab-pane med-text fade in show" id="{{'tab_'.$cttc->id}}">
+                            <div class="col-12 col-lg-12 col-md-12 wow fadeIn" data-wow-delay="0.6s"
+                                style="padding-top: 5px; ">
+                                {!! $cttc->content !!}
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <!-- end tab content -->
                 @endforeach
             </div>

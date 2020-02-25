@@ -39,12 +39,12 @@
                 <div
                     class="col-12 d-flex flex-column text-center justify-content-center page-title-large padding-30px-tb">
                     <!-- start page title -->
-                    <h1 class="alt-font text-white font-weight-600 mb-0">General Secretary</h1>
+                    <h1 class="alt-font text-white font-weight-600 mb-0">Secretary General</h1>
                     <!-- start breadcrumb -->
                     <div class="breadcrumb">
                         <ul class="text-center text-white text-md-right">
                             <li><a href="{{route('home')}}">Home</a></li>
-                            <li>General Secretary</li>
+                            <li>Secretary General</li>
                         </ul>
                     </div>
                     <!-- end breadcrumb -->
@@ -65,7 +65,7 @@
                         <li class="nav-item"><a class="nav-link active" href="#tab_sec1" data-toggle="tab">Profile</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="#tab_sec2" data-toggle="tab">Secretary General's
-                                Page</a></li>
+                                Engagement</a></li>
                         <li class="nav-item"><a class="nav-link" href="#tab_sec3" data-toggle="tab">Statements</a></li>
                     </ul>
                     <!-- end tab navigation -->
@@ -90,10 +90,17 @@
                                     <a href="{{route('secretary-page', $secretarypage->id)}}">
                                         <div class="card p-0 card-shadow">
                                             <img class="card-img-top"
+                                                 style="object-fit: none; object-position: center; min-height: 200px; max-height: 200px;"
                                                  src="{{asset('storage/secretary/'.$secretarypage->file)}}"
                                                  alt="Card image cap">
-                                            <div class="card-body">
-                                                <h6 class="card-title link">{{$secretarypage->title}}</h6>
+                                            <div class="card-body" style="min-height: 800px;">
+                                                <h6 class="card-title link" style="font-size: 20px;">
+                                                    @if(strlen($secretarypage->title)>100)
+                                                        {{substr($secretarypage->title, 0, 99)}}...
+                                                    @else
+                                                        {{$secretarypage->title}}
+                                                    @endif
+                                                </h6>
                                                 <p class="card-title">{{\Carbon\Carbon::parse($secretarypage->date, 'UTC')->isoFormat('Do MMM YYYY')}}</p>
                                             </div>
                                         </div>
@@ -121,12 +128,23 @@
                                 </div>
 
                                 <div class="col-12 col-lg-10 text-center text-lg-left wow fadeIn">
-                                    <div
-                                        class="feature-content padding-10px-all bg-white box-shadow-light lg-padding-20px-all download_tb px-4">
-                                        <h2 class="text-large line-height-25 text-dark">{{$statement->title}}</h2>
-                                        <a class="text-extra-small line-height-25 text-white btn btn-success"
-                                           href="{{asset('storage/secretary/'.$statement->file)}}"
-                                           target="_blank"><u>Download</u></a>
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div
+                                                class="feature-content padding-10px-all bg-white box-shadow-light lg-padding-20px-all download_tb px-4">
+                                                <h3 class="text-large line-height-25 text-dark">
+                                                    @if(strlen($statement->title)>60)
+                                                        {{substr($statement->title, 0, 59)}}...
+                                                    @else
+                                                        {{$statement->title}}
+                                                    @endif
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a class="text-extra-small text-white btn btn-success mt-lg-3"
+                                               href="{{asset('storage/secretary/'.$statement->file)}}"
+                                               target="_blank"><u>Download</u></a></div>
                                     </div>
                                 </div>
                             </div>
