@@ -58,7 +58,7 @@
         $(function ($) {
             CKEDITOR.replace( 'description', {height: 500});
         })(jQuery)
-        $(function ($) {
+        //$(function ($) {
             $('#dates').datepicker({
                 uiLibrary: 'bootstrap4',
                 format: 'yyyy-mm-dd'
