@@ -17,7 +17,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Date</label>
-                                <input id="dates" name="date" value="{{old('date')}}" placeholder="Date" class="form-control" autocomplete="false">
+                                <input type="date" id="dates" name="date" value="{{old('date')}}" placeholder="Date" class="form-control" autocomplete="false">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Type</label>
@@ -58,7 +58,7 @@
         $(function ($) {
             CKEDITOR.replace( 'description', {height: 500});
         })(jQuery)
-        //$(function ($) {
+        $(function ($) {
             $('#dates').datepicker({
                 uiLibrary: 'bootstrap4',
                 format: 'yyyy-mm-dd'
