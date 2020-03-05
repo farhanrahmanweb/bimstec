@@ -26,12 +26,15 @@
                             </thead>
                             <tbody>
                             @foreach($documents as $key=>$document)
+                                @if(!is_null($document->category))
                                 <tr>
                                     <th scope="row">{{$key+1}}</th>
                                     <td>{{$document->title}}</td>
                                     <td>{{\Carbon\Carbon::parse($document->document_date, 'UTC')->isoFormat('Do MMMM YYYY')}}</td>
                                     <td>{{$document->category['name']}}</td>
+                                    @if(!is_null($document->subcategory))
                                     <td>{{$document->subcategory['name']}}</td>
+                                    @endif
                                     <td>
                                         @if($document->is_publish==1)
                                             <span class="badge badge-success">Publish</span>
@@ -52,6 +55,7 @@
                                         </form>
                                     </td>
                                 </tr>
+                                @endif
                             @endforeach
                             </tbody>
                         </table>
