@@ -23,7 +23,7 @@ class DocumentController extends Controller
 
     public function index()
     {
-        $documents = Document::latest()->paginate(10);
+        $documents = Document::orderBy('document_date', 'DESC')->paginate(10);
         return view('backend.admin.document.index', compact('documents'));
     }
 

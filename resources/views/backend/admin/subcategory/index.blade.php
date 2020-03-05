@@ -26,7 +26,7 @@
                                 <tr>
                                     <th scope="row">{{$key+1}}</th>
                                     <td>{{$subcategory->name}}</td>
-                                    <td>{{$subcategory->category->name}}</td>
+                                    <td>{{$subcategory->category['name']}}</td>
                                     <td>
                                         <a href="{{route('admin.subcategory.edit', $subcategory->id)}}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
                                         <a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="deleteSubcategory({{$subcategory->id}})"><i class="fas fa-trash"></i></a>

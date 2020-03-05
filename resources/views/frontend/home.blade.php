@@ -12,7 +12,7 @@
             @foreach($sliders as $slider)
                 <div class="items">
                     <div class="banner" style="background-image: url({{asset('storage/slider/'.$slider->image)}})">
-                        <div class="banner-content">
+                        <div class="banner-content  col-md-8" style="word-wrap: break-word">
                             <p class="wow fadeInUp">
                                 {{$slider->description}}
                             </p>

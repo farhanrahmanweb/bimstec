@@ -8,20 +8,21 @@
                 <div class="card">
                     <div class="card-header clearfix">
                         <h6 class="text-uppercase mb-0 float-left">Document List</h6>
-                        <a href="{{route('admin.document.create')}}" class="btn btn-primary float-right"> <i class="fas fa-plus"></i> Add Document</a>
+                        <a href="{{route('admin.document.create')}}" class="btn btn-primary float-right"> <i
+                                class="fas fa-plus"></i> Add Document</a>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped table-hover card-text">
                             <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Title</th>
-                                    <th>Date</th>
-                                    <th>Category</th>
-                                    <th>Subcategory</th>
-                                    <th>Status</th>
-                                    <th></th>
-                                </tr>
+                            <tr>
+                                <th>#</th>
+                                <th>Title</th>
+                                <th>Date</th>
+                                <th>Category</th>
+                                <th>Subcategory</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
                             </thead>
                             <tbody>
                             @foreach($documents as $key=>$document)
@@ -29,8 +30,8 @@
                                     <th scope="row">{{$key+1}}</th>
                                     <td>{{$document->title}}</td>
                                     <td>{{\Carbon\Carbon::parse($document->document_date, 'UTC')->isoFormat('Do MMMM YYYY')}}</td>
-                                    <td>{{$document->category->name}}</td>
-                                    <td>{{$document->subcategory->name}}</td>
+                                    <td>{{$document->category['name']}}</td>
+                                    <td>{{$document->subcategory['name']}}</td>
                                     <td>
                                         @if($document->is_publish==1)
                                             <span class="badge badge-success">Publish</span>
@@ -39,15 +40,19 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{route('admin.document.edit', $document->id)}}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
-                                        <a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="deleteDocument({{$document->id}})"><i class="fas fa-trash"></i></a>
-                                        <form id="delete-form-{{$document->id}}" action="{{route('admin.document.destroy', $document->id)}}" method="POST" style="display: none">
+                                        <a href="{{route('admin.document.edit', $document->id)}}"
+                                           class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
+                                        <a href="javascript:void(0)" class="btn btn-sm btn-danger"
+                                           onclick="deleteDocument({{$document->id}})"><i class="fas fa-trash"></i></a>
+                                        <form id="delete-form-{{$document->id}}"
+                                              action="{{route('admin.document.destroy', $document->id)}}" method="POST"
+                                              style="display: none">
                                             @csrf
                                             @method('DELETE')
                                         </form>
                                     </td>
                                 </tr>
-                                @endforeach
+                            @endforeach
                             </tbody>
                         </table>
                         <div class="float-right mt-5 mr-3">
@@ -74,7 +79,7 @@
             }).then((result) => {
                 if (result.value) {
                     event.preventDefault();
-                    document.getElementById('delete-form-'+id).submit();
+                    document.getElementById('delete-form-' + id).submit();
                 }
             })
         }

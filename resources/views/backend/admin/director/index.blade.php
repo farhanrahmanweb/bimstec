@@ -28,7 +28,7 @@
                                     <th scope="row">{{$key+1}}</th>
                                     <td>{{$director->name}}</td>
                                     <td>{{$director->designation}}</td>
-                                    <td>{{$director->division->title}}</td>
+                                    <td>{{$director->division['title']}}</td>
                                     <td>
                                         <a href="{{route('admin.director.edit', $director->id)}}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
                                         <a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="deleteDirector({{$director->id}})"><i class="fas fa-trash"></i></a>
