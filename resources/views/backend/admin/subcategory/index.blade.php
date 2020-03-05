@@ -23,7 +23,7 @@
                             </thead>
                             <tbody>
                             @foreach($subcategorys as $key=>$subcategory)
-                                @if(is_null($subcategory->category)}
+                                @if(!is_null($subcategory->category))
                                 <tr>
                                     <th scope="row">{{$key+1}}</th>
                                     <td>{{$subcategory->name}}</td>
