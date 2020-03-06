@@ -11238,12 +11238,12 @@ header.sticky nav.navbar.brand-center ul.nav > li > a {
 
 .sidebar-middle ::-webkit-scrollbar, .sidebar-nav-style-1 ::-webkit-scrollbar {
     -webkit-appearance: none;
-    width: 4px;
+    width: 10px;
     height: 4px;
 }
 
 .sidebar-middle ::-webkit-scrollbar-thumb, .sidebar-nav-style-1 ::-webkit-scrollbar-thumb {
-    background-color: #9e9f9f;
+    background-color: rgba(0, 0, 0, 0.54);
 }
 
 .navbar-collapse, .sub-menu {

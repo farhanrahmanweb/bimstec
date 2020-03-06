@@ -12,9 +12,9 @@
             <span></span>
         </button>
     </div>
-    <div class="col-12 px-0">
-        <div id="navbar-menu" class="collapse navbar-collapse no-padding">
-            <ul class="nav navbar-nav navbar-left-sidebar font-weight-500">
+    <div class="col-12 px-0" >
+        <div id="navbar-menu" class="collapse navbar-collapse no-padding" style="background-color: #fff;">
+            <ul class="nav navbar-nav navbar-left-sidebar font-weight-500" style="height:45vh !important;">
                 <li class="{{ Request::path() == 'about-bimstec' ||
                               Request::path() == 'bimstec-guiding-principles' ||
                               Request::path() == 'bimstec-chairmanship' ||
@@ -152,7 +152,8 @@
             </ul>
         </div>
     </div>
-    <div class="col-12 position-absolute top-auto bottom-0 left-0 width-100 padding-20px-bottom sm-padding-15px-bottom">
+    <div class="col-12 position-absolute top-auto bottom-0 left-0 width-100 padding-20px-bottom sm-padding-15px-bottom"
+        style="height:40vh !important; background-color: #fff; padding-top: 1rem;">
         <div class="footer-holder">
             <form action="{{route('search')}}" method="POST" class="navbar-form no-padding search-box" role="search">
                 @csrf

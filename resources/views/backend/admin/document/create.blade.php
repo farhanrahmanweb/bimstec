@@ -13,19 +13,22 @@
                             @csrf
                             <div class="form-group">
                                 <label class="form-control-label">Document Title</label>
-                                <input type="text" name="title" value="{{old('title')}}" placeholder="Document title" class="form-control">
+                                <input type="text" name="title" value="{{old('title')}}" placeholder="Document title"
+                                       class="form-control">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Document Description</label>
-                                <textarea name="description" cols="30" rows="5" placeholder="Docuemnt Description" class="form-control">{{old('description')}}</textarea>
+                                <textarea name="description" cols="30" rows="5" placeholder="Docuemnt Description"
+                                          class="form-control ckeditor">{{old('description')}}</textarea>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Document Date</label>
-                                <input  id="document_date" name="document_date" value="{{old('document_date')}}" placeholder="Document Date" class="form-control">
+                                <input id="document_date" name="document_date" 
+                                       placeholder="Document Date" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Category</label>
-                                <select name="category_id" class="form-control">
+                                <select id="category_id" name="category_id" class="form-control">
                                     <option value="">--Select Category--</option>
                                     @foreach($categorys as $key=>$category)
                                         <option value="{{$category->id}}">{{$category->name}}</option>
@@ -35,7 +38,7 @@
                             <div class="form-group">
                                 <label class="form-control-label">Subcategory</label>
                                 <select name="subcategory_id" class="form-control">
-                                    <option value="">--Select Subcategory--</option>
+                                    <option value="">Select Subcategory</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -44,11 +47,13 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Document Password</label>
-                                <input type="password" name="password" value="{{old('password')}}" placeholder="Document Password" class="form-control">
+                                <input type="password" name="password" value="{{old('password')}}"
+                                       placeholder="Document Password" class="form-control">
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
-                                    <input id="customCheck1" type="checkbox" name="is_publish" class="custom-control-input">
+                                    <input id="customCheck1" type="checkbox" name="is_publish"
+                                           class="custom-control-input">
                                     <label for="customCheck1" class="custom-control-label">Publish Document?</label>
                                 </div>
                             </div>
@@ -64,37 +69,51 @@
 @endsection
 
 @push('js')
-    <script >
-        $(function ($) {
-            CKEDITOR.replace( 'description', {height: 500});
-        })(jQuery)
-        //$(function ($) {
-            $('#document_date').datepicker({
-                uiLibrary: 'bootstrap4',
-                format: 'yyyy-mm-dd'
-            });
-
-            $('select[name="category_id"]').on('change', function() {
-                var catID = $(this).val();
-                if(catID) {
+    <script>
+        $(document).ready(function () {
+            $('select[name="category_id"]').on('change', function () {
+                console.log("found");
+                const catID = $(this).val();
+                if (catID) {
                     $.ajax({
-                        url: '/admin/subcategory/ajax/'+catID,
+                        url: "/admin/subcategory/ajax/" + catID,
                         type: "GET",
                         dataType: "json",
-                        success:function(data) {
+                        success: function (data) {
                             $('select[name="subcategory_id"]').empty();
                             $('select[name="subcategory_id"]').append('<option value="">--Select Subcategory</option>');
-                            $.each(data, function(key, value) {
-                                $('select[name="subcategory_id"]').append('<option value="'+ value.id +'">'+ value.name +'</option>');
+                            $.each(data, function (key, value) {
+                                $('select[name="subcategory_id"]').append('<option value="' + value.id + '">' + value.name + '</option>');
                             });
                         }
                     });
-                }else{
+                } else {
                     $('select[name="subcategory_id"]').empty();
                     $('select[name="subcategory_id"]').append('<option value="">--Select Subcategory</option>');
 
                 }
             });
+
+
+            $('#document_date').datepicker({
+                uiLibrary: 'bootstrap4',
+                format: 'yyyy-mm-dd'
+            });
+        });
+
+        CKEDITOR.replace('description',
+            {
+                height: 500
+            })
+        // $(function ($) {
+        //     CKEDITOR.replace('description', {height: 500});
+        // })(jQuery)
+        //
+        // $('#document_date').datepicker({
+        //     uiLibrary: 'bootstrap4',
+        //     format: 'yyyy-mm-dd'
+        // });
+
 
         //})(jQuery)
 

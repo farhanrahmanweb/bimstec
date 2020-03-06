@@ -122,7 +122,7 @@
                 var catID = $(this).val();
                 if (catID) {
                     $.ajax({
-                        url: '/subcategory' + catID,
+                        url: '/subcategory/' + catID,
                         type: "GET",
                         dataType: "json",
                         success: function (data) {

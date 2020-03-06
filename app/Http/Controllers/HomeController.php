@@ -32,6 +32,7 @@ class HomeController extends Controller
     {
         $data['sliders'] = Slider::where('is_publish', 1)->latest()->get();
         $data['upcomingEvents'] = Event::whereDate('event_start_date', '>=', date('Y-m-d'))->where('is_publish', 1)->get();
+        $data['pastEvents'] = Event::whereDate('event_end_date', '<=', date('Y-m-d'))->where('is_publish', 1)->orderBy('event_end_date', 'DESC')->get();
         return view('frontend.home', $data);
     }
 
@@ -66,7 +67,7 @@ class HomeController extends Controller
 
     public function documents()
     {
-        $data['documents'] = Document::where('is_publish', 1)->latest()->paginate(20);
+        $data['documents'] = Document::where('is_publish', 1)->orderBy('document_date', 'DESC')->paginate(20);
         $data['years'] = Document::select('year')->groupBy('year')->get();
         $data['categorys'] = Category::with('subcategorys')->get();
         return view('frontend.documents', $data);
@@ -134,7 +135,7 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         if ($request->type === 'all') {
-            $keyword = "%".$request->get('query')."%";
+            $keyword = "%" . $request->get('query') . "%";
             $events = Event::where(DB::raw('upper(event_title)'), 'like', strtoupper($keyword))->get();
             $documents = Document::where(DB::raw('upper(title)'), 'like', strtoupper($keyword))->get();
 
@@ -147,7 +148,7 @@ class HomeController extends Controller
         }
 
         if ($request->type === 'events') {
-            $keyword = "%".$request->get('query')."%";
+            $keyword = "%" . $request->get('query') . "%";
             $events = Event::where(DB::raw('upper(event_title)'), 'like', strtoupper($keyword))->get();
 
             $data['results'] = $events;
@@ -157,7 +158,7 @@ class HomeController extends Controller
         }
 
         if ($request->type === 'documents') {
-            $keyword = "%".$request->get('query')."%";
+            $keyword = "%" . $request->get('query') . "%";
             $documents = Document::where(DB::raw('upper(title)'), 'like', strtoupper($keyword))->get();
 
             $data['results'] = $documents;

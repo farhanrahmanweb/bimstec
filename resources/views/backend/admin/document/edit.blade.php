@@ -18,7 +18,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Document Description</label>
-                                <textarea name="description" cols="30" rows="5" placeholder="Docuemnt Description" class="form-control">{{$document->description}}</textarea>
+                                <textarea name="description" cols="30" rows="5" placeholder="Docuemnt Description" class="form-control ckeditor">{{$document->description}}</textarea>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Document Date</label>
@@ -102,6 +102,10 @@
                     }
                 });
         });
+        CKEDITOR.replace('description',
+            {
+                height: 500
+            })
     </script>
 @endpush
 

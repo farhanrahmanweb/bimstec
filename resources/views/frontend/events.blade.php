@@ -86,7 +86,7 @@
                         <div class="col-12 col-lg-8 text-center text-lg-left wow fadeIn">
                             <div
                                 class="feature-content padding-10px-all bg-white box-shadow-light lg-padding-20px-all download_tb">
-                                <h5 class="mb-0">{{$data->event_title}}</h5>
+                                <b class="mb-0">{{$data->event_title}}</b>
                                 <p class="text-medium line-height-25 text-medium-gray mb-2">
                                     {{$data->event_location}}
                                 </p>
