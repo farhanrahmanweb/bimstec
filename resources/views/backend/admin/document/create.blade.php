@@ -23,7 +23,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Document Date</label>
-                                <input id="document_date" name="document_date" 
+                                <input id="document_date" name="document_date"
                                        placeholder="Document Date" class="form-control">
                             </div>
                             <div class="form-group">
@@ -47,7 +47,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Document Password</label>
-                                <input type="password" name="password" value="{{old('password')}}"
+                                <input type="text" name="password" value="{{old('password')}}"
                                        placeholder="Document Password" class="form-control">
                             </div>
                             <div class="form-group">

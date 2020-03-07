@@ -11,13 +11,13 @@
         <div class="owl-carousel owl-theme">
             @foreach($sliders as $slider)
                 <div class="items">
-                    <div class="banner col-md-12 "
+                    <div class="banner"
                          style="background-image: url({{asset('storage/slider/'.$slider->image)}})">
-                        <div class="banner-content  col-md-8 justify-content-center" style="word-wrap: break-word">
+                        <div class="banner-content col-md-8 offset-md-4" style="margin-left: 0vw; word-wrap: break-word">
                             <p class="wow fadeInUp">
                                 {{$slider->description}}
                             </p>
-                            <h1 class="wow fadeInUp">{{$slider->title}}</h1>
+                            <h2 class="wow fadeInUp">{{$slider->title}}</h2>
                             <a class="wow fadeInUp btn btn-medium btn-transparent-white margin-five-top mx-auto d-table d-lg-inline-block md-margin-lr-auto"
                                data-wow-delay="0.6s"
                                href="{{$slider->link}}">Read More</a>
@@ -72,10 +72,13 @@
                         <!-- start testimonial item -->
                         @if(count($upcomingEvents)>0)
                             @foreach($upcomingEvents as $key=>$event)
+
                                 <div class="col-12 col-lg-4 col-md-6 swiper-slide md-margin-four-bottom">
                                     <div
                                         class="margin-half-all bg-white box-shadow-light text-center padding-fourteen-all sm-padding-30px-all">
-                                        <p class="md-margin-15px-bottom sm-margin-20px-bottom">{{$event->event_title}}</p>
+                                        <a href="{{route('events-get', $event->id)}}"><p
+                                                class="md-margin-15px-bottom sm-margin-20px-bottom">{{$event->event_title}}</p>
+                                        </a>
                                         <span
                                             class="text-extra-dark-gray text-small text-uppercase d-block line-height-10 alt-font font-weight-600 py-2">{{$event->event_location}}</span>
                                         <span
@@ -94,6 +97,7 @@
                                 </span>
                                     </div>
                                 </div>
+
                             @endforeach
                         @else
                             <div class="col-12 col-lg-4 col-md-6 swiper-slide md-margin-four-bottom">
@@ -404,10 +408,13 @@
                         <!-- start testimonial item -->
                         @if(count($pastEvents)>0)
                             @foreach($pastEvents as $key=>$event)
+
                                 <div class="col-12 col-lg-4 col-md-6 swiper-slide md-margin-four-bottom">
                                     <div
                                         class="margin-half-all bg-white box-shadow-light text-center padding-fourteen-all sm-padding-30px-all">
-                                        <p class="md-margin-15px-bottom sm-margin-20px-bottom">{{$event->event_title}}</p>
+                                        <a href="{{route('events-get', $event->id)}}"><p
+                                                class="md-margin-15px-bottom sm-margin-20px-bottom">{{$event->event_title}}</p>
+                                        </a>
                                         <span
                                             class="text-extra-dark-gray text-small text-uppercase d-block line-height-10 alt-font font-weight-600 py-2">{{$event->event_location}}</span>
                                         <span
@@ -426,6 +433,7 @@
                                 </span>
                                     </div>
                                 </div>
+
                             @endforeach
                         @else
                             <div class="col-12 col-lg-4 col-md-6 swiper-slide md-margin-four-bottom">

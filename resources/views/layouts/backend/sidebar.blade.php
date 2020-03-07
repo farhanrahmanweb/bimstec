@@ -75,9 +75,9 @@
                             </a>
                         </li>
                         <li class="sidebar-list-item">
-                            <a href="{{route('admin.cttcPage.index')}}"
-                               class="sidebar-link text-muted pl-lg-5  {{Request::is('admin/cttcPage*') ? 'active' : ''}}">
-                                Counter-Terrorism and Transnational Crime Page
+                            <a href="{{route('admin.organogram.edit', 1)}}"
+                               class="sidebar-link text-muted pl-lg-5  {{Request::is('admin/category*') ? 'active' : ''}}">
+                                Organogram
                             </a>
                         </li>
                     </ul>
@@ -95,6 +95,26 @@
                         <li class="sidebar-list-item">
                             <a href="{{route('admin.director.index')}}"
                                class="sidebar-link text-muted pl-lg-5  {{Request::is('admin/director*') ? 'active' : ''}}">Directors</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="sidebar-list-item">
+                <a href="#" data-toggle="collapse" data-target="#pagecttc" aria-expanded="false" aria-controls="pagecttc"
+                   class="sidebar-link text-muted"><i class="o-survey-1 mr-3 text-gray"></i><span>Counter-Terrorism and Transnational Crime</span></a>
+                <div id="pagecttc" class="collapse">
+                    <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
+                        <li class="sidebar-list-item">
+                            <a href="{{route('admin.cttcPage.index')}}"
+                               class="sidebar-link text-muted pl-lg-5  {{Request::is('admin/cttcPage*') ? 'active' : ''}}">Groups</a>
+                        </li>
+                        <li class="sidebar-list-item">
+                            <a href="{{route('admin.cttcSubgroup.index')}}"
+                               class="sidebar-link text-muted pl-lg-5  {{Request::is('admin/cttcSubgroup*') ? 'active' : ''}}">SubGroups</a>
+                        </li>
+                        <li class="sidebar-list-item">
+                            <a href="{{route('admin.cttcSubsubgroup.index')}}"
+                               class="sidebar-link text-muted pl-lg-5  {{Request::is('admin/cttcSubsubgroup*') ? 'active' : ''}}">Sub SubGroups</a>
                         </li>
                     </ul>
                 </div>

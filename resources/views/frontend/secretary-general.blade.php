@@ -88,15 +88,15 @@
                             @foreach($secretaryPages as $key=>$secretarypage)
                                 <div class="col-md-3">
                                     <a href="{{route('secretary-page', $secretarypage->id)}}">
-                                        <div class="card p-0 card-shadow">
+                                        <div class="card p-0 card-shadow mb-2">
                                             <img class="card-img-top"
                                                  style="object-fit: none; object-position: center; min-height: 200px; max-height: 200px;"
                                                  src="{{asset('storage/secretary/'.$secretarypage->file)}}"
                                                  alt="Card image cap">
                                             <div class="card-body" style="min-height: 800px;">
                                                 <h6 class="card-title link" style="font-size: 20px;">
-                                                    @if(strlen($secretarypage->title)>100)
-                                                        {{substr($secretarypage->title, 0, 99)}}...
+                                                    @if(strlen($secretarypage->title)>70)
+                                                        {{substr($secretarypage->title, 0, 69)}}...
                                                     @else
                                                         {{$secretarypage->title}}
                                                     @endif

@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\CttcPage;
+use App\CttcSubgroups;
+use App\CttcSubsubgroups;
 use App\Director;
 use App\Division;
 use App\Document;
 use App\Event;
 use App\Gallery;
+use App\Organogram;
 use App\Photo;
 use App\Secretary;
 use App\SecretaryProfile;
@@ -115,8 +118,14 @@ class HomeController extends Controller
 
     public function events()
     {
-        $data = Event::where('is_publish', 1)->get();
+        $data = Event::where('is_publish', 1)->orderBy('event_start_date', 'DESC')->get();
         return view('frontend.events', compact('data'));
+    }
+
+    public function getEvent($id)
+    {
+        $data = Event::where('id', $id)->first();
+        return view('frontend.event-details', compact('data'));
     }
 
     public function searchEvents(Request $request)
@@ -197,7 +206,8 @@ class HomeController extends Controller
 
     public function bimstecOrganogram()
     {
-        return view('frontend.bimstec-organogram');
+        $organogram = DB::table('organograms')->first();
+        return view('frontend.bimstec-organogram', compact('organogram'));
     }
 
     public function pastSecretaryGeneral()
@@ -268,7 +278,15 @@ class HomeController extends Controller
     public function counterTerrorismTransnationalCrime()
     {
         $cttcs = CttcPage::all();
-        return view('frontend.counter-terrorism-transnational-crime', compact('cttcs'));
+        $cttc_subgroups = CttcSubgroups::all();
+        $cttc_subsubgroups = CttcSubsubgroups::all();
+        return view('frontend.counter-terrorism-transnational-crime', compact('cttcs', 'cttc_subgroups', 'cttc_subsubgroups'));
+    }
+
+    public function downloadCttcDocuments($filepath)
+    {
+        $file_path = public_path('storage/cttc/' . $filepath);
+        return response()->download($file_path);
     }
 
     public function environmentDisasterManagement()

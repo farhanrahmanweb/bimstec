@@ -27,34 +27,37 @@
                             <tbody>
                             @foreach($documents as $key=>$document)
                                 @if(!is_null($document->category))
-                                <tr>
-                                    <th scope="row">{{$key+1}}</th>
-                                    <td>{{$document->title}}</td>
-                                    <td>{{\Carbon\Carbon::parse($document->document_date, 'UTC')->isoFormat('Do MMMM YYYY')}}</td>
-                                    <td>{{$document->category['name']}}</td>
-                                    @if(!is_null($document->subcategory))
-                                    <td>{{$document->subcategory['name']}}</td>
-                                    @endif
-                                    <td>
-                                        @if($document->is_publish==1)
-                                            <span class="badge badge-success">Publish</span>
+                                    <tr>
+                                        <th scope="row">{{$key+1}}</th>
+                                        <td>{{$document->title}}</td>
+                                        <td>{{\Carbon\Carbon::parse($document->document_date, 'UTC')->isoFormat('Do MMMM YYYY')}}</td>
+                                        <td>{{$document->category['name']}}</td>
+                                        @if(!is_null($document->subcategory))
+                                            <td>{{$document->subcategory['name']}}</td>
                                         @else
-                                            <span class="badge badge-secondary">Unpublish</span>
+                                            <td>N/A</td>
                                         @endif
-                                    </td>
-                                    <td>
-                                        <a href="{{route('admin.document.edit', $document->id)}}"
-                                           class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
-                                        <a href="javascript:void(0)" class="btn btn-sm btn-danger"
-                                           onclick="deleteDocument({{$document->id}})"><i class="fas fa-trash"></i></a>
-                                        <form id="delete-form-{{$document->id}}"
-                                              action="{{route('admin.document.destroy', $document->id)}}" method="POST"
-                                              style="display: none">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
-                                    </td>
-                                </tr>
+                                        <td>
+                                            @if($document->is_publish==1)
+                                                <span class="badge badge-success">Publish</span>
+                                            @else
+                                                <span class="badge badge-secondary">Unpublish</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{route('admin.document.edit', $document->id)}}"
+                                               class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
+                                            <a href="javascript:void(0)" class="btn btn-sm btn-danger"
+                                               onclick="deleteDocument({{$document->id}})"><i class="fas fa-trash"></i></a>
+                                            <form id="delete-form-{{$document->id}}"
+                                                  action="{{route('admin.document.destroy', $document->id)}}"
+                                                  method="POST"
+                                                  style="display: none">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        </td>
+                                    </tr>
                                 @endif
                             @endforeach
                             </tbody>

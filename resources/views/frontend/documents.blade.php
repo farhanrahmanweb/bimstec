@@ -83,9 +83,20 @@
                         <div class="col-12 col-lg-10 text-center text-lg-left wow fadeIn">
                             <div
                                 class="feature-content padding-10px-all bg-white box-shadow-light lg-padding-20px-all download_tb h-100 position-relative">
-                                <h6 class="mb-0">{{$document->title}}</h6>
+
+                                <b class="mb-0">
+                                    @if(strlen($document->title)>60)
+                                        {{substr($document->title, 0, 59)}}...
+                                    @else
+                                        {{$document->title}}
+                                    @endif
+                                </b>
                                 <p class="text-medium line-height-25 text-medium-gray mb-2">
-                                    {{$document->description}}
+                                    @if(strlen($document->description)>100)
+                                        {{substr($document->description, 0, 99)}}...
+                                    @else
+                                        {{$document->description}}
+                                    @endif
                                 </p>
                                 <form action="{{route('document.download')}}" method="post">
                                     @csrf

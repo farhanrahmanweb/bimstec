@@ -6,19 +6,28 @@
             <div class="col-lg-8 mb-5">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="h6 text-uppercase mb-0">Update Group</h3>
+                        <h3 class="h6 text-uppercase mb-0">Update SubGroup</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('admin.cttcPage.update', $cttc->id)}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('admin.cttcSubgroup.update', $cttc_subgroup->id)}}" method="POST" enctype="multipart/form-data">
                             @method('PATCH')
                             @csrf
                             <div class="form-group">
-                                <label class="form-control-label">Group Title</label>
-                                <input type="text" name="title" value="{{$cttc->title}}" placeholder="Group Title" class="form-control">
+                                <label class="form-control-label">SubGroup Title</label>
+                                <input type="text" name="title" value="{{$cttc_subgroup->title}}" placeholder="SubGroup Title" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label class="form-control-label">Group Content</label>
-                                <textarea name="content"  cols="30" rows="5" placeholder="Group Content" class="form-control">{{$cttc->content}}</textarea>
+                                <label class="form-control-label">Parent Group</label>
+                                <select name="cttc_page_id" id="" class="form-control">
+                                    <option value="">--Select Group--</option>
+                                    @foreach($cttc_group as $key=>$group)
+                                        <option value="{{$group->id}}">{{$group->title}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">SubGroup Content</label>
+                                <textarea name="content"  cols="30" rows="5" placeholder="Tab Content" class="form-control">{{$cttc_subgroup->content}}</textarea>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Upload PDF</label>

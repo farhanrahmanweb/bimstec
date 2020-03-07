@@ -13,15 +13,18 @@
                             @csrf
                             <div class="form-group">
                                 <label class="form-control-label">Slider Title</label>
-                                <input type="text" name="title" value="{{old('title')}}" placeholder="Slider title" class="form-control">
+                                <input type="text" name="title" value="{{old('title')}}" placeholder="Slider title"
+                                       class="form-control">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Slider Description</label>
-                                <textarea name="description" id="" cols="30" rows="5" placeholder="Slider Description" class="form-control">{{old('description')}}</textarea>
+                                <textarea name="description" id="" cols="30" rows="5" placeholder="Slider Description"
+                                          class="form-control ckeditor">{{old('description')}}</textarea>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Slider Link</label>
-                                <input type="text" name="link" value="{{old('link')}}" placeholder="Slider Link" class="form-control">
+                                <input type="text" name="link" value="{{old('link')}}" placeholder="Slider Link"
+                                       class="form-control">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Slider Image</label>
@@ -29,7 +32,8 @@
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
-                                    <input id="customCheck1" type="checkbox" name="is_publish" class="custom-control-input">
+                                    <input id="customCheck1" type="checkbox" name="is_publish"
+                                           class="custom-control-input">
                                     <label for="customCheck1" class="custom-control-label">Publish Slider?</label>
                                 </div>
                             </div>
@@ -45,10 +49,11 @@
 @endsection
 
 @push('js')
-    <script >
-        $(function ($) {
-            CKEDITOR.replace( 'description', {height: 500});
-        })(jQuery)
+    <script>
+        CKEDITOR.replace('description',
+            {
+                height: 500
+            })
         $(function ($) {
             $('#event_start_date').datepicker({
                 uiLibrary: 'bootstrap4',
@@ -61,5 +66,5 @@
         })(jQuery)
 
     </script>
-    @endpush
+@endpush
 

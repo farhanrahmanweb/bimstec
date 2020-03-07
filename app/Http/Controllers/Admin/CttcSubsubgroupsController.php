@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\CttcPage;
-use App\Director;
-use App\Division;
+use App\CttcSubgroups;
+use App\CttcSubsubgroups;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -12,7 +12,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class CttcPageController extends Controller
+class CttcSubsubgroupsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +21,8 @@ class CttcPageController extends Controller
      */
     public function index()
     {
-        $cttcs = CttcPage::latest()->paginate(10);
-        return view('backend.admin.cttc.index', compact('cttcs'));
+        $cttc_subsubgroups = CttcSubsubgroups::latest()->paginate(10);
+        return view('backend.admin.cttcsubsubgroup.index', compact('cttc_subsubgroups'));
     }
 
     /**
@@ -32,25 +32,28 @@ class CttcPageController extends Controller
      */
     public function create()
     {
-        return view('backend.admin.cttc.create');
+        $cttc_subgroup = CttcSubgroups::latest()->get();
+        return view('backend.admin.cttcsubsubgroup.create', compact('cttc_subgroup'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
+            'title'=> 'required',
             'content' => 'required',
+            'cttc_subgroup_id' => 'required',
             'file' => 'mimes:pdf,xlx,csv',
         ]);
 
-        $cttc = new CttcPage();
+        $cttc = new CttcSubsubgroups();
         $cttc->title = $request->title;
+        $cttc->cttc_subgroup_id = $request->cttc_subgroup_id;
         $cttc->content = $request->get('content');
 
         if ($request->has('file')) {
@@ -72,17 +75,17 @@ class CttcPageController extends Controller
         }
 
         $cttc->save();
-        Toastr::success("CTTC Group Added Successfully", "CTTC");
-        return redirect()->route('admin.cttcPage.index');
+        Toastr::success("CTTC Sub Subgroup Added Successfully", "CTTC");
+        return redirect()->route('admin.cttcSubsubgroup.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\CttcPage $cttcPage
+     * @param  \App\CttcSubsubgroups  $cttcSubsubgroups
      * @return \Illuminate\Http\Response
      */
-    public function show(CttcPage $cttcPage)
+    public function show(CttcSubsubgroups $cttcSubsubgroups)
     {
         //
     }
@@ -90,32 +93,35 @@ class CttcPageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param bigInt $id
+     * @param  bigInt $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $cttc = CttcPage::find($id);
-        return view('backend.admin.cttc.edit', compact('cttc'));
+        $cttc_subgroup = CttcSubgroups::get();
+        $cttc_subsubgroup = CttcSubsubgroups::find($id);
+        return view('backend.admin.cttcsubsubgroup.edit', compact('cttc_subgroup', 'cttc_subsubgroup'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param bigInt $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  bigInt $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title' => 'required',
+            'title'=> 'required',
             'content' => 'required',
+            'cttc_subgroup_id' => 'required',
             'file' => 'mimes:pdf,xlx,csv',
         ]);
 
-        $cttc = CttcPage::find($id);
+        $cttc = CttcSubsubgroups::find($id);
         $cttc->title = $request->title;
+        $cttc->cttc_subgroup_id = $request->cttc_subgroup_id;
         $cttc->content = $request->get('content');
 
         if ($request->has('file')) {
@@ -137,21 +143,21 @@ class CttcPageController extends Controller
         }
 
         $cttc->save();
-        Toastr::success("CTTC Group Updated Successfully", "CTTC");
-        return redirect()->route('admin.cttcPage.index');
+        Toastr::success("CTTC Sub Subgroup Updated Successfully", "CTTC");
+        return redirect()->route('admin.cttcSubsubgroup.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param bigInt $id
+     * @param  bigInt $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $cttc = CttcPage::find($id);
+        $cttc = CttcSubsubgroups::find($id);
         $cttc->delete();
-        Toastr::success('Tab Deleted Successfully', 'Success');
+        Toastr::success('Sub SubGroup Deleted Successfully', 'Success');
         return redirect()->back();
     }
 }

@@ -54,7 +54,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">New Password</label>
-                                <input type="password" name="new_password" value="{{old('password')}}" placeholder="New Password" class="form-control">
+                                <input type="text" name="new_password" value="{{old('password')}}" placeholder="New Password" class="form-control">
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">

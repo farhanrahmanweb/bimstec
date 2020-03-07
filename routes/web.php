@@ -53,12 +53,14 @@ Route::get('/cultural-cooperation', 'HomeController@culturalCooperation')->name(
 Route::get('/climate-change', 'HomeController@climateChange')->name('climate-change');
 Route::get('/documents', 'HomeController@documents')->name('documents');
 Route::get('/events', 'HomeController@events')->name('events');
+Route::get('/events/{id}', 'HomeController@getEvent')->name('events-get');
 Route::post('/search-events', 'HomeController@searchEvents')->name('search.events');
 Route::post('/search', 'HomeController@search')->name('search');
 
 Route::get('/photos/more/{id}', 'HomeController@photosMore')->name('photos.mores');
 Route::post('/search-documents', 'HomeController@searchDocuments')->name('search.document');
 Route::post('/download-documents', 'HomeController@downloadDocuments')->name('document.download');
+Route::get('/download-cttc-documents/{filepath}', 'HomeController@downloadCttcDocuments')->name('cttc-download');
 Route::get('/secretary-general/page/{id}', 'HomeController@secretaryPage')->name('secretary-page');
 Route::get('/subcategory/{id}', 'HomeController@subcategory')->name('subcategory');
 
@@ -82,6 +84,9 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     Route::resource('director', 'DirectorController');
     Route::resource('secretaryProfile', 'SecretaryProfileController');
     Route::resource('cttcPage', 'CttcPageController');
+    Route::resource('cttcSubgroup', 'CttcSubgroupsController');
+    Route::resource('cttcSubsubgroup', 'CttcSubsubgroupsController');
+    Route::resource('organogram', 'OrganogramController');
 });
 
 //Editor

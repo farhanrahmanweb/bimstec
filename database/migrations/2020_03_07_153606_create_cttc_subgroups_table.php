@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCttcPagesTable extends Migration
+class CreateCttcSubgroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateCttcPagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cttc_pages', function (Blueprint $table) {
+        Schema::create('cttc_subgroups', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
+            $table->bigInteger('cttc_page_id');
             $table->text('content');
             $table->string('file')->nullable();
             $table->timestamps();
@@ -29,6 +30,6 @@ class CreateCttcPagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cttc_pages');
+        Schema::dropIfExists('cttc_subgroups');
     }
 }

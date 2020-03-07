@@ -8,8 +8,8 @@
             <div class="col-lg-12 mb-4">
                 <div class="card">
                     <div class="card-header clearfix">
-                        <h6 class="text-uppercase mb-0 float-left">Counter-Terrorism and Transnational Crime Groups</h6>
-                        <a href="{{route('admin.cttcPage.create')}}" class="btn btn-primary float-right"> <i class="fas fa-plus"></i> Add New Group</a>
+                        <h6 class="text-uppercase mb-0 float-left">Counter-Terrorism and Transnational Crime Subgroups</h6>
+                        <a href="{{route('admin.cttcSubgroup.create')}}" class="btn btn-primary float-right"> <i class="fas fa-plus"></i> Add New Subgroup</a>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped table-hover card-text">
@@ -17,23 +17,27 @@
                                 <tr>
                                     <th>Sl.</th>
                                     <th>Title</th>
+                                    <th>Parent Group</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($cttcs as $key=>$cttc)
+                            @foreach($cttc_subgroups as $key=>$cttc)
+                                @if(!is_null($cttc->cttc_page))
                                 <tr>
                                     <th scope="row">{{$key+1}}</th>
                                     <td>{{$cttc->title}}</td>
+                                    <td>{{$cttc->cttc_page['title']}}</td>
                                     <td>
-                                        <a href="{{route('admin.cttcPage.edit', $cttc->id)}}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
+                                        <a href="{{route('admin.cttcSubgroup.edit', $cttc->id)}}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
                                         <a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="deleteCttc({{$cttc->id}})"><i class="fas fa-trash"></i></a>
-                                        <form id="delete-form-{{$cttc->id}}" action="{{route('admin.cttcPage.destroy', $cttc->id)}}" method="POST" style="display: none">
+                                        <form id="delete-form-{{$cttc->id}}" action="{{route('admin.cttcSubgroup.destroy', $cttc->id)}}" method="POST" style="display: none">
                                             @csrf
                                             @method('DELETE')
                                         </form>
                                     </td>
                                 </tr>
+                                @endif
                             @endforeach
                             </tbody>
                         </table>

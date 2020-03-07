@@ -18,7 +18,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Slider Description</label>
-                                <textarea name="description" id="" cols="30" rows="5" placeholder="Slider Description" class="form-control">{{$slider->description}}</textarea>
+                                <textarea name="description" id="" cols="30" rows="5" placeholder="Slider Description" class="form-control ckeditor">{{$slider->description}}</textarea>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Slider Link</label>
@@ -48,9 +48,10 @@
 
 @push('js')
     <script >
-        $(function ($) {
-            CKEDITOR.replace( 'description', {height: 500});
-        })(jQuery)
+        CKEDITOR.replace('description',
+            {
+                height: 500
+            })
         $(function ($) {
             $('#event_start_date').datepicker({
                 uiLibrary: 'bootstrap4',
