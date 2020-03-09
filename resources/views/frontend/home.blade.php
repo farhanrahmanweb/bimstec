@@ -412,8 +412,8 @@
                                 <div class="col-12 col-lg-4 col-md-6 swiper-slide md-margin-four-bottom">
                                     <div
                                         class="margin-half-all bg-white box-shadow-light text-center padding-fourteen-all sm-padding-30px-all">
-                                        <a href="{{route('events-get', $event->id)}}"><p
-                                                class="md-margin-15px-bottom sm-margin-20px-bottom">{{$event->event_title}}</p>
+                                        <a href="{{route('events-get', $event->id)}}"><b
+                                                class="md-margin-15px-bottom sm-margin-20px-bottom">{{$event->event_title}}</b>
                                         </a>
                                         <span
                                             class="text-extra-dark-gray text-small text-uppercase d-block line-height-10 alt-font font-weight-600 py-2">{{$event->event_location}}</span>

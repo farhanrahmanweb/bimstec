@@ -43,19 +43,29 @@
                     <div class="row margin-10px-bottom">
                         <div class="col-12 col-lg-10 text-center text-lg-left wow fadeIn">
                             <div
-                                class="feature-content padding-10px-all bg-white box-shadow-light lg-padding-20px-all download_tb">
+                                class=" padding-10px-all bg-white box-shadow-light lg-padding-20px-all download_tb">
                                 @if($result->title == null)
-                                    <h5 class="mb-0">{{$result->event_title}}</h5>
-                                    <p class="text-medium line-height-25 text-medium-gray mb-2">
+
+                                    <b class="mb-0"><a
+                                            href="{{route('events-get', $result->id)}}"
+                                            class="text-black">{{$result->event_title}}</a></b>
+                                    <br>
+                                    <span class="text-medium line-height-25 text-medium-gray mb-2">
                                         {{$result->event_location}}
-                                    </p>
-                                    <p class="text-medium line-height-25 text-medium-gray mb-2">
+                                    </span>
+                                    <br>
+                                    <span class="text-medium line-height-25 text-medium-gray mb-2">
                                         From {{$result->event_start_date }} to {{$result->event_end_date}}
-                                    </p>
+                                    </span>
+
                                 @else
-                                    <h5 class="mb-0">{{$result->title}}</h5>
+                                    <b class="mb-0">{{$result->title}}</b>
                                     <p class="text-medium line-height-25 text-medium-gray mb-2">
-                                        {{$result->description}}
+                                        @if(strlen($result->description)>100)
+                                            {!! substr($result->description, 0, 99) !!}
+                                        @else
+                                            {!! $result->description !!}
+                                        @endif
                                     </p>
                                     <form action="{{route('document.download')}}" method="post">
                                         @csrf

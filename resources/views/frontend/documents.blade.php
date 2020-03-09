@@ -93,9 +93,9 @@
                                 </b>
                                 <p class="text-medium line-height-25 text-medium-gray mb-2">
                                     @if(strlen($document->description)>100)
-                                        {{substr($document->description, 0, 99)}}...
+                                        {!! substr($document->description, 0, 99) !!}
                                     @else
-                                        {{$document->description}}
+                                        {!! $document->description !!}
                                     @endif
                                 </p>
                                 <form action="{{route('document.download')}}" method="post">

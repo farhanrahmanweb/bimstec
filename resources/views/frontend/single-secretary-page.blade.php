@@ -8,12 +8,12 @@
             <div class="row align-items-center">
                 <div class="col-12 d-flex flex-column text-center justify-content-center page-title-large padding-30px-tb">
                     <!-- start page title -->
-                    <h1 class="alt-font text-white font-weight-600 mb-0">General Secretary</h1>
+                    <h1 class="alt-font text-white font-weight-600 mb-0">Secretary General</h1>
                     <!-- start breadcrumb -->
                     <div class="breadcrumb">
                         <ul class="text-center text-white text-md-right">
                             <li><a href="{{route('home')}}">Home</a></li>
-                            <li>General Secretary</li>
+                            <li>Secretary General</li>
                         </ul>
                     </div>
                     <!-- end breadcrumb -->
