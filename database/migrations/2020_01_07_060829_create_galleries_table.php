@@ -15,7 +15,7 @@ class CreateGalleriesTable extends Migration
     {
         Schema::create('galleries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title')->nullable();
+            $table->longText('title')->nullable();
             $table->date('gallery_date')->nullable();
             $table->year('year')->nullable();
             $table->boolean('is_publish')->default(false);

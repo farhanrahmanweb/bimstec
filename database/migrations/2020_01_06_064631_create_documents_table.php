@@ -17,7 +17,7 @@ class CreateDocumentsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('category_id');
             $table->integer('subcategory_id');
-            $table->string('title')->nullable();
+            $table->longText('title')->nullable();
             $table->string('password');
             $table->string('description')->nullable();
             $table->date('document_date')->nullable();

@@ -10580,6 +10580,11 @@ nav.navbar.navbar-default ul.menu-links li.dropdown ul.dropdown-menu li > a:hove
     left: 530px;
     top: 0;
     height: 100%;
+    color: #0b0b0b;
+}
+
+.third-dropdown:hover{
+    background-color: #141414;
 }
 
 nav.navbar ul.nav .dropdown-menu.second-level .dropdown-menu {

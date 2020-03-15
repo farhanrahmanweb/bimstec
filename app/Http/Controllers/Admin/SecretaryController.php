@@ -46,7 +46,7 @@ class SecretaryController extends Controller
             'title'=> 'required',
             'type'=> 'required',
             'date'=> 'required',
-//            'description'=> 'required',
+            'description',
             'file'=> 'required|mimes:pdf,jpeg,png,jpg'
         ]);
 
@@ -116,7 +116,7 @@ class SecretaryController extends Controller
             'title'=> 'required',
             'type'=> 'required',
             'date'=> 'required',
-//            'description'=> 'required',
+            'description',
             'file'=> 'mimes:pdf,jpeg,png,jpg'
         ]);
 

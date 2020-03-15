@@ -13,11 +13,13 @@
                             @csrf
                             <div class="form-group">
                                 <label class="form-control-label">Title</label>
-                                <input type="text" name="title" value="{{old('title')}}" placeholder="title" class="form-control">
+                                <input type="text" name="title" value="{{old('title')}}" placeholder="title"
+                                       class="form-control">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Date</label>
-                                <input type="date" id="dates" name="date" value="{{old('date')}}" placeholder="Date" class="form-control" autocomplete="false">
+                                <input type="date" id="dates" name="date" value="{{old('date')}}" placeholder="Date"
+                                       class="form-control" autocomplete="false">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Type</label>
@@ -27,9 +29,9 @@
                                     <option value="statement">Statement</option>
                                 </select>
                             </div>
-                            <div class="form-group" id="description">
+                            <div class="form-group">
                                 <label class="form-control-label">Description</label>
-                                <textarea name="description" id="" cols="30" rows="5" class="form-control"></textarea>
+                                <textarea name="description" cols="30" rows="5" class="form-control ckeditor"></textarea>
                             </div>
 
                             <div class="form-group">
@@ -38,7 +40,8 @@
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
-                                    <input id="customCheck1" type="checkbox" name="is_publish" class="custom-control-input">
+                                    <input id="customCheck1" type="checkbox" name="is_publish"
+                                           class="custom-control-input">
                                     <label for="customCheck1" class="custom-control-label">Publish?</label>
                                 </div>
                             </div>
@@ -54,26 +57,10 @@
 @endsection
 
 @push('js')
-    <script >
+    <script>
         $(function ($) {
-            CKEDITOR.replace( 'description', {height: 500});
+            CKEDITOR.replace('description', {height: 500});
         })(jQuery)
-        //$(function ($) {
-            $('#dates').datepicker({
-                uiLibrary: 'bootstrap4',
-                format: 'yyyy-mm-dd'
-            });
-
-            $('#description').hide();
-            $('#type').change(function(){
-                if($('#type').val() == 'page') {
-                    $('#description').show();
-                } else {
-                    $('#description').hide();
-                }
-            });
-
-
     </script>
 @endpush
 

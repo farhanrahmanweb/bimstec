@@ -29,9 +29,9 @@
                                 </select>
                             </div>
                             @if($secretary->type=='page')
-                                <div class="form-group" id="description">
+                                <div class="form-group">
                                     <label class="form-control-label">Description</label>
-                                    <textarea name="description" id="" cols="30" rows="5" class="form-control">{{$secretary->description}}</textarea>
+                                    <textarea name="description"  cols="30" rows="5" class="form-control ckeditor">{{$secretary->description}}</textarea>
                                 </div>
                             @endif
 
@@ -60,26 +60,10 @@
 @endsection
 
 @push('js')
-    <script >
+    <script>
         $(function ($) {
-            CKEDITOR.replace( 'description', {height: 500});
+            CKEDITOR.replace('description', {height: 500});
         })(jQuery)
-       // $(function ($) {
-        $('#dates').datepicker({
-            uiLibrary: 'bootstrap4',
-            format: 'yyyy-mm-dd'
-        });
-
-        //$('#description').hide();
-        $('#type').change(function(){
-            if($('#type').val() == 'page') {
-                $('#description').show();
-            } else {
-                $('#description').hide();
-            }
-        });
-
-
     </script>
 @endpush
 

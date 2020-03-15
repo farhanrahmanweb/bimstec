@@ -41,9 +41,9 @@
                                      Request::path() == 'past-secretary-general' ? 'dropdown active' : 'dropdown' }}">
                             <a href="{{route('bimstec-secretariat')}}" title="BIMSTEC Secretariat" data-toggle="dropdown">BIMSTEC Secretariat <i class="fas fa-angle-right"></i></a>
                             <ul class="dropdown-menu third-level">
-                                <li class="{{Request::path() == 'directors-divisions' ? 'active' : '' }}"><a href="{{route('directors-divisions')}}">Directors and Divisions</a></li>
-                                <li class="{{Request::path() == 'bimstec-organogram' ? 'active' : '' }}"><a href="{{route('bimstec-organogram')}}">Organogram</a></li>
-                                <li class="{{Request::path() == 'past-secretary-general' ? 'active' : '' }}"><a href="{{route('past-secretary-general')}}">Past Secretary General</a></li>
+                                <li class="{{Request::path() == 'directors-divisions' ? 'third-dropdown active' : 'third-dropdown ' }}"><a href="{{route('directors-divisions')}}">Directors and Divisions</a></li>
+                                <li class="{{Request::path() == 'bimstec-organogram' ? 'third-dropdown active' : 'third-dropdown ' }}"><a href="{{route('bimstec-organogram')}}">Organogram</a></li>
+                                <li class="{{Request::path() == 'past-secretary-general' ? 'third-dropdown active' : 'third-dropdown ' }}"><a href="{{route('past-secretary-general')}}">Past Secretary General</a></li>
                             </ul>
                         </li>
                         <li class="{{Request::path() == 'bimstec-mechanism' ? 'dropdown active' : 'dropdown' }}">
@@ -116,7 +116,7 @@
                         <li class="{{Request::path() == 'people-to-people-contact' ? 'dropdown active' : 'dropdown' }}">
                             <a href="{{route('people-to-people-contact')}}" title="People to People Contact" data-toggle="dropdown">People to People Contact <i class="fas fa-angle-right"></i></a>
                             <ul class="dropdown-menu third-level">
-                                <li class="{{Request::path() == 'bnptt.php' ? 'active' : '' }}"><a href="bnptt.php">BNPTT</a></li>
+                                <li class="{{Request::path() == 'bnptt.php' ? 'third-dropdown active' : 'third-dropdown ' }}"><a href="bnptt.php">BNPTT</a></li>
                             </ul>
                         </li>
                         <li class="{{Request::path() == 'cultural-cooperation' ? 'dropdown active' : 'dropdown' }}">

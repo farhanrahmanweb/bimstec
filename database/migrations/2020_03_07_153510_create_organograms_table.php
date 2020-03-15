@@ -15,7 +15,7 @@ class CreateOrganogramsTable extends Migration
     {
         Schema::create('organograms', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('content');
+            $table->longText('content');
             $table->timestamps();
         });
     }

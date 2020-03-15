@@ -2,11 +2,13 @@
 @section('title', 'Home- Bay of Bengal Initiative for Multi-Sectoral Technical and Economic Cooperation')
 @section('content')
     <!-- start page title section -->
-    <section id="page_title" class="wow fadeIn cover-background background-position-center top-space" style="background-image:url({{asset('frontend/images/page-title-img.JPG')}});">
+    <section id="page_title" class="wow fadeIn cover-background background-position-center top-space"
+             style="background-image:url({{asset('frontend/images/page-title-img.JPG')}});">
         <div class="opacity-medium bg-extra-dark-gray"></div>
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-12 d-flex flex-column text-center justify-content-center page-title-large padding-30px-tb">
+                <div
+                    class="col-12 d-flex flex-column text-center justify-content-center page-title-large padding-30px-tb">
                     <!-- start page title -->
                     <h1 class="alt-font text-white font-weight-600 mb-0">Secretary General</h1>
                     <!-- start breadcrumb -->
@@ -35,11 +37,13 @@
                 </div>
                 <div class="col-12 col-md-2">
                     <div class="feature-content text-left">
-                        <div class="alt-font font-weight-500 text-extra-dark-gray text_icon"><i class="far fa-calendar-alt margin-10px-right"></i>{{\Carbon\Carbon::parse($singlepage->date, 'UTC')->isoFormat('Do MMM YYYY')}}</div>
+                        <div class="alt-font font-weight-500 text-extra-dark-gray text_icon"><i
+                                class="far fa-calendar-alt margin-10px-right"></i>{{\Carbon\Carbon::parse($singlepage->date, 'UTC')->isoFormat('Do MMM YYYY')}}
+                        </div>
                     </div>
                 </div>
                 <div class="col-12 col-lg-12 col-md-12 text-left margin-30px-top">
-                    <p>{{$singlepage->description}}</p>
+                    <p>{!! $singlepage->description!!}</p>
 
                 </div>
             </div>

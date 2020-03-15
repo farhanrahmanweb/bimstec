@@ -16,7 +16,7 @@ class CreateDirectorsTable extends Migration
         Schema::create('directors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('division_id');
-            $table->string('name');
+            $table->longText('name');
             $table->string('designation');
             $table->string('image');
             $table->text('contact');

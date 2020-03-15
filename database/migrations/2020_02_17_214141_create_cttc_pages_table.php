@@ -15,7 +15,7 @@ class CreateCttcPagesTable extends Migration
     {
         Schema::create('cttc_pages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->longText('title');
             $table->text('content');
             $table->string('file')->nullable();
             $table->timestamps();

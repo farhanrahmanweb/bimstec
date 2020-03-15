@@ -54,8 +54,8 @@ class HomeController extends Controller
 
     public function secretaryGeneral()
     {
-        $statements = Secretary::where('type', '=', 'statement')->where('is_publish', 1)->latest()->get();
-        $secretaryPages = Secretary::where('type', '=', 'page')->where('is_publish', 1)->latest()->get();
+        $statements = Secretary::where('type', '=', 'statement')->where('is_publish', 1)->orderBy('date', 'DESC')->get();
+        $secretaryPages = Secretary::where('type', '=', 'page')->where('is_publish', 1)->orderBy('date', 'DESC')->get();
         $profile = DB::table('secretary_profiles')->first();
         return view('frontend.secretary-general', compact('profile', 'statements', 'secretaryPages'));
     }

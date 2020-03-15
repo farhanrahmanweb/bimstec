@@ -15,7 +15,7 @@ class CreateSecretaryProfilesTable extends Migration
     {
         Schema::create('secretary_profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('content');
+            $table->longText('content');
             $table->timestamps();
         });
     }

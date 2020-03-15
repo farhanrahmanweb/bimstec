@@ -15,9 +15,9 @@ class CreateCttcSubsubgroupsTable extends Migration
     {
         Schema::create('cttc_subsubgroups', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->longText('title');
             $table->bigInteger('cttc_subgroup_id');
-            $table->text('content');
+            $table->longText('content');
             $table->string('file')->nullable();
             $table->timestamps();
         });
