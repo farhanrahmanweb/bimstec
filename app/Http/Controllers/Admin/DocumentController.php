@@ -60,7 +60,7 @@ class DocumentController extends Controller
             'description'=> 'required',
             'document_date'=> 'required',
             'file'=> 'required|mimes:pdf,xlx,csv',
-            'password'=> 'required',
+            'password',
         ]);
 
         $image = $request->file('file');
@@ -140,14 +140,12 @@ class DocumentController extends Controller
             'description'=> 'required',
             'document_date'=> 'required',
             'file'=> 'mimes:pdf,xlx,csv',
-            'old_password'=> 'required',
-            'new_password'=> 'required',
         ]);
 
         $image = $request->file('file');
         $slug = Str::slug($request->title, '-');
         $document = Document::find($id);
-        $isMatched = Hash::check($request->old_password, $document->password);
+        $isMatched = true;
         if($isMatched == true) {
             if (isset($image)) {
                 $currentDate = Carbon::now()->toDateString();

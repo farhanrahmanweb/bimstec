@@ -44,7 +44,7 @@ class SliderController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'description' => 'required',
+            'description' ,
             'link' => 'required',
             'image' => 'required|mimes:jpeg,jpg,bmp,png',
         ]);
@@ -114,7 +114,7 @@ class SliderController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'description' => 'required',
+            'description',
             'link' => 'required',
             'image' => 'mimes:jpeg,jpg,bmp,png',
         ]);

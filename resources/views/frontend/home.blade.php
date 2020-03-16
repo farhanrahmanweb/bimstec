@@ -8,14 +8,15 @@
     </div>
     <!-- start slider section -->
     <section class="wow fadeIn example no-padding no-transition">
-        <div class="owl-carousel owl-theme">
+        <div class="owl-carousel owl-theme" id="owl-example">
             @foreach($sliders as $slider)
                 <div class="items">
                     <div class="banner"
                          style="background-image: url({{asset('storage/slider/'.$slider->image)}})">
-                        <div class="banner-content col-md-8 offset-md-4" style="margin-left: 0vw; word-wrap: break-word">
+                        <div class="banner-content col-md-8 offset-md-4"
+                             style="margin-left: 0vw; word-wrap: break-word">
                             <p class="wow fadeInUp">
-                                {{$slider->description}}
+                                {!! $slider->description !!}
                             </p>
                             <h2 class="wow fadeInUp">{{$slider->title}}</h2>
                             <a class="wow fadeInUp btn btn-medium btn-transparent-white margin-five-top mx-auto d-table d-lg-inline-block md-margin-lr-auto"
@@ -451,5 +452,17 @@
         </div>
     </section>
     <!-- end Event slider style 01 section -->
-
 @endsection
+@push('js')
+    <script>
+        $(document).ready(function () {
+            const owl = document.getElementById(".owl-example");
+            owl.owlCarousel({
+                loop: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: false
+            });
+        });
+    </script>
+@endpush

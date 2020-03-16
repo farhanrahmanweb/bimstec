@@ -32,9 +32,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <p><i class="far fa-calendar-alt margin-10px-right"></i>From {{$data->event_start_date}} To {{$data->event_end_date}}</p>
+                    <p><i class="far fa-calendar-alt margin-10px-right"></i>From {{$data->event_start_date}}
+                        To {{$data->event_end_date}}</p>
                     <p><i class="fas fa-map-marker-alt margin-10px-right"></i>{{$data->event_location}}</p>
-                    {!! $data->event_description !!}
+                    <div>
+                        {!! $data->event_description !!}
+                    </div>
+                    <div class="owl-carousel owl-theme" style="height: 200px;" id="owl-example">
+                        @foreach($data->photos as $slider)
+                            <div class="items">
+                                <div class="banner">
+                                    <img src="{{$slider->image}}" alt="event">
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
                 </div>
             </div>
         </div>

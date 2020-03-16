@@ -102,12 +102,14 @@
                                     @csrf
                                     <input type="hidden" name="id" value="{{$document->id}}" class="form-control">
                                     <div class="row">
+                                        @if(!is_null($document->password))
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <input type="password" name="password" placeholder="Enter Password"
+                                                <input type="password" name="password" value=" " placeholder="Enter Password"
                                                        class="form-control" required>
                                             </div>
                                         </div>
+                                        @endif
                                         <div class="col-sm-2">
                                             <button type="submit" class="btn btn-success">Download</button>
                                         </div>
