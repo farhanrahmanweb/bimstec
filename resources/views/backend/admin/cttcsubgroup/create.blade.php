@@ -9,11 +9,12 @@
                         <h3 class="h6 text-uppercase mb-0">Create New SubGroup</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('admin.cttcSubgroup.store')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('admin.cttcSubgroup.store')}}" method="POST"
+                              enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label class="form-control-label">SubGroup Title</label>
-                                <input type="text" name="title"  placeholder="Tab Title" class="form-control">
+                                <input type="text" name="title" placeholder="Tab Title" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Parent Group</label>
@@ -26,7 +27,8 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">SubGroup Content</label>
-                                <textarea name="content" cols="30" rows="20" placeholder="Tab Content" class="form-control" ></textarea>
+                                <textarea name="content" cols="30" rows="20" placeholder="Tab Content"
+                                          class="form-control"></textarea>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Upload PDF</label>
@@ -44,9 +46,9 @@
 @endsection
 
 @push('js')
-    <script >
+    <script>
         $(function ($) {
-            CKEDITOR.replace( 'content');
+            CKEDITOR.replace('content');
         })(jQuery)
 
     </script>

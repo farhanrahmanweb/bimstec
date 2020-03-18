@@ -15,7 +15,7 @@
                     <div class="breadcrumb">
                         <ul class="text-center text-white text-md-right">
                             <li><a href="{{route('home')}}">Home</a></li>
-                            <li><a href="#">Documents</a></li>
+                            <li><a href="/documents">Documents</a></li>
                         </ul>
                     </div>
                     <!-- end breadcrumb -->
@@ -105,7 +105,7 @@
                                         @if(!is_null($document->password))
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <input type="password" name="password" value=" " placeholder="Enter Password"
+                                                <input type="password" name="password" placeholder="Enter Password"
                                                        class="form-control" required>
                                             </div>
                                         </div>

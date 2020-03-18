@@ -74,7 +74,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@8.17.1/dist/sweetalert2.all.min.js"></script>
 <script src="//unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 {{--<script src="//cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>--}}
-<script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+<script src="//cdn.ckeditor.com/4.14.0/full-all/ckeditor.js"></script>
 
 <script >
     @if($errors->any())

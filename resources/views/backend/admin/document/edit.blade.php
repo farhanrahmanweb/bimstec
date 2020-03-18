@@ -49,11 +49,7 @@
                                 <input type="file" name="file" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label class="form-control-label">Old Password</label>
-                                <input type="password" name="old_password" value="{{old('password')}}" placeholder="Old Password" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label">New Password</label>
+                                <label class="form-control-label">New Password (Optional)</label>
                                 <input type="text" name="new_password" value="{{old('password')}}" placeholder="New Password" class="form-control">
                             </div>
                             <div class="form-group">

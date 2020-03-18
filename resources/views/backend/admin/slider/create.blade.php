@@ -50,11 +50,8 @@
 
 @push('js')
     <script>
-        CKEDITOR.replace('description',
-            {
-                height: 500
-            })
         $(function ($) {
+            CKEDITOR.replace('description');
             $('#event_start_date').datepicker({
                 uiLibrary: 'bootstrap4',
                 format: 'yyyy-mm-dd'

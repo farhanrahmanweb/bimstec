@@ -46,7 +46,7 @@
                                 <input type="file" name="file" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label class="form-control-label">Document Password</label>
+                                <label class="form-control-label">Document Password (Optional)</label>
                                 <input type="text" name="password" value="{{old('password')}}"
                                        placeholder="Document Password" class="form-control">
                             </div>

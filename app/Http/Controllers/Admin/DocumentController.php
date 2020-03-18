@@ -39,7 +39,8 @@ class DocumentController extends Controller
         return view('backend.admin.document.create', compact('categorys', 'subcategorys'));
     }
 
-    public function ajaxSubcategory($id){
+    public function ajaxSubcategory($id)
+    {
         $subcategoriys = Subcategory::where('category_id', $id)->get();
         return json_encode($subcategoriys);
     }
@@ -47,51 +48,53 @@ class DocumentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
 
         $this->validate($request, [
-            'title'=> 'required',
-            'category_id'=> 'required',
-            'subcategory_id'=> 'required',
-            'description'=> 'required',
-            'document_date'=> 'required',
-            'file'=> 'required|mimes:pdf,xlx,csv',
+            'title' => 'required',
+            'category_id' => 'required',
+            'subcategory_id',
+            'description' => 'required',
+            'document_date' => 'required',
+            'file' => 'required|mimes:pdf,xlx,csv',
             'password',
         ]);
 
         $image = $request->file('file');
         $slug = Str::slug($request->title, '-');
 
-        if(isset($image)){
+        if (isset($image)) {
             $currentDate = Carbon::now()->toDateString();
-            $fileName = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+            $fileName = $slug . '-' . $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
 
-            if(!Storage::disk('public')->exists('document'))
-            {
+            if (!Storage::disk('public')->exists('document')) {
                 Storage::disk('public')->makeDirectory('document');
             }
             $request->file->move(public_path('storage/document/'), $fileName);
-        }else{
+        } else {
             $fileName = "default.pdf";
         }
         $document = new Document();
         $document->title = $request->title;
         $document->description = $request->description;
         $document->category_id = $request->category_id;
-        $document->subcategory_id = $request->subcategory_id;
         $document->year = date('Y');
         $document->document_date = $request->document_date;
         $document->file = $fileName;
-        $document->password = Hash::make($request->password);
+        if (isset($request->subcategory_id)) {
+            $document->subcategory_id = $request->subcategory_id;
+        }
+        if (isset($request->password)) {
+            $document->password = Hash::make($request->password);
+        }
 
-        if(isset($request->is_publish))
-        {
+        if (isset($request->is_publish)) {
             $document->is_publish = true;
-        }else{
+        } else {
             $document->is_publish = false;
         };
         $document->save();
@@ -102,7 +105,7 @@ class DocumentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -113,7 +116,7 @@ class DocumentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -121,84 +124,82 @@ class DocumentController extends Controller
         $document = Document::find($id);
         $categorys = Category::all();
         $subcategorys = Subcategory::all();
-        return view('backend.admin.document.edit', compact('document', 'categorys','subcategorys'));
+        return view('backend.admin.document.edit', compact('document', 'categorys', 'subcategorys'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title'=> 'required',
-            'category_id'=> 'required',
-            'subcategory_id'=> 'required',
-            'description'=> 'required',
-            'document_date'=> 'required',
-            'file'=> 'mimes:pdf,xlx,csv',
+            'title' => 'required',
+            'category_id' => 'required',
+            'subcategory_id',
+            'description' => 'required',
+            'document_date' => 'required',
+            'file' => 'mimes:pdf,xlx,csv',
+            'new_password'
         ]);
 
         $image = $request->file('file');
         $slug = Str::slug($request->title, '-');
         $document = Document::find($id);
-        $isMatched = true;
-        if($isMatched == true) {
-            if (isset($image)) {
-                $currentDate = Carbon::now()->toDateString();
-                $fileName = $slug . '-' . $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
 
-                if (!Storage::disk('public')->exists('document')) {
-                    Storage::disk('public')->makeDirectory('document');
-                }
-                if (Storage::disk('public')->exists('document/' . $document->file)) {
-                    Storage::disk('public')->delete('document/' . $document->file);
-                }
-                $request->file->move(public_path('storage/document/'), $fileName);
-            } else {
-                $fileName = $document->file;
+        if (isset($image)) {
+            $currentDate = Carbon::now()->toDateString();
+            $fileName = $slug . '-' . $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            if (!Storage::disk('public')->exists('document')) {
+                Storage::disk('public')->makeDirectory('document');
             }
-
-            $document->title = $request->title;
-            $document->description = $request->description;
-            $document->category_id = $request->category_id;
-            $document->subcategory_id = $request->subcategory_id;
-            $document->year = date('Y');
-            $document->document_date = $request->document_date;
-            $document->file = $fileName;
-            $document->password = Hash::make($request->new_password);
-
-            if (isset($request->is_publish)) {
-                $document->is_publish = true;
-            } else {
-                $document->is_publish = false;
-            };
-            $document->save();
-            Toastr::success("Documents Update Successfully", "Document");
-            return redirect()->route('admin.document.index');
-        }else{
-            Toastr::error("Invalid Password", "Document");
-            $categorys = Category::all();
-            $subcategorys = Subcategory::all();
-            return redirect()->route('admin.document.edit',  compact('document', 'categorys', 'subcategorys'));
+            if (Storage::disk('public')->exists('document/' . $document->file)) {
+                Storage::disk('public')->delete('document/' . $document->file);
+            }
+            $request->file->move(public_path('storage/document/'), $fileName);
+        } else {
+            $fileName = $document->file;
         }
+
+        $document->title = $request->title;
+        $document->description = $request->description;
+        $document->category_id = $request->category_id;
+        $document->year = date('Y');
+        $document->document_date = $request->document_date;
+        $document->file = $fileName;
+        if (isset($request->subcategory_id)) {
+            $document->subcategory_id = $request->subcategory_id;
+        }
+        if (isset($request->new_password)) {
+            $document->password = Hash::make($request->new_password);
+        }
+
+        if (isset($request->is_publish)) {
+            $document->is_publish = true;
+        } else {
+            $document->is_publish = false;
+        };
+        $document->save();
+        Toastr::success("Documents Update Successfully", "Document");
+        return redirect()->route('admin.document.index');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $document = Document::find($id);
-        if(Storage::disk('public')->exists('document/'.$document->file))
-        {
-            Storage::disk('public')->delete('document/'.$document->file);
+        if (Storage::disk('public')->exists('document/' . $document->file)) {
+            Storage::disk('public')->delete('document/' . $document->file);
         }
         $document->delete();
         Toastr::success('Document Delete Successfully', 'Success');

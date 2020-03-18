@@ -80,7 +80,7 @@ class HomeController extends Controller
     {
         $data['documents'] = Document::whereYear('document_date', $request->year)->paginate(10);
 
-        if ($request->category_id != '' && $request->subcategory_id != '') {
+        if ($request->category_id != '') {
             $data['documents'] = Document::whereYear('document_date', $request->year)
                 ->where([['category_id', $request->category_id], ['subcategory_id', $request->subcategory_id]])->paginate(10);
         }
@@ -94,12 +94,16 @@ class HomeController extends Controller
     {
         $this->validate($request, [
             'id' => 'required',
-            'password' => 'required',
+            'password',
         ]);
 
         $document = Document::find($request->id);
 
-        $isMatched = Hash::check($request->password, $document->password);
+        $isMatched = true;
+
+        if(isset($request->password)) {
+            $isMatched = Hash::check($request->password, $document->password);
+        }
 
         if ($isMatched == true) {
             $file_path = public_path('storage/document/' . $document->file);

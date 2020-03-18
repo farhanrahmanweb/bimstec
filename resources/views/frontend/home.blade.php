@@ -117,6 +117,77 @@
     </section>
     <!-- end Event slider style 01 section -->
 
+    <!-- start Event slider style 01 section -->
+    <section id="upcoming_events" class="wow fadeIn bg-light-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div
+                    class="col-12 col-xl-6 col-md-8 margin-eight-bottom md-margin-40px-bottom sm-margin-30px-bottom text-center">
+                    <h5 class="alt-font font-weight-700 text-extra-dark-gray margin-20px-bottom text-uppercase">Past
+                        Events</h5>
+                    <span
+                        class="separator-line-horrizontal-medium-light2 bg-deep-pink d-table mx-auto width-100px"></span>
+                </div>
+            </div>
+            <div class="row position-relative">
+                <div class="swiper-container swiper-pagination-bottom black-move blog-slider swiper-three-slides">
+                    <div class="swiper-wrapper">
+                        <!-- start testimonial item -->
+                        @if(count($pastEvents)>0)
+                            @foreach($pastEvents as $key=>$event)
+
+                                <div class="col-12 col-lg-4 col-md-6 swiper-slide md-margin-four-bottom">
+                                    <a href="{{route('events-get', $event->id)}}">
+                                        <div
+                                            class="margin-half-all bg-white box-shadow-light text-center padding-fourteen-all sm-padding-30px-all">
+                                            <h6
+                                                class="md-margin-15px-bottom sm-margin-20px-bottom"
+                                                style="
+                                                overflow: hidden;
+                                               text-overflow: ellipsis;
+                                               display: -webkit-box;
+                                               -webkit-box-orient: vertical;
+                                                -webkit-line-clamp: 2;">
+                                                {{$event->event_title}}</h6>
+
+                                            <span
+                                                class="text-extra-dark-gray text-small text-uppercase d-block line-height-10 alt-font font-weight-600 py-2">{{$event->event_location}}</span>
+                                            <span
+                                                class="text-extra-dark-gray text-small text-uppercase d-block line-height-10 alt-font font-weight-600">
+
+                                    @if($event->event_start_date==$event->event_end_date)
+                                                    {{\Carbon\Carbon::parse($event->event_start_date, 'UTC')->isoFormat('Do MMMM YYYY')}}
+                                                @else
+                                                    @php
+                                                        $edate = \Carbon\Carbon::parse($event->event_end_date, 'UTC');
+                                                        $sdate = \Carbon\Carbon::parse($event->event_start_date, 'UTC');
+                                                    @endphp
+                                                    {{$sdate->isoFormat('D')}}
+                                                    -{{$edate->isoFormat('D')}} {{\Carbon\Carbon::parse($event->event_start_date, 'UTC')->isoFormat('MMMM YYYY')}}
+                                                @endif
+                                </span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            @endforeach
+                        @else
+                            <div class="col-12 col-lg-4 col-md-6 swiper-slide md-margin-four-bottom">
+                                <div
+                                    class="margin-half-all bg-white box-shadow-light text-center padding-fourteen-all sm-padding-30px-all">
+                                    <h4 class="md-margin-15px-bottom sm-margin-20px-bottom">No Past Event</h4>
+                                </div>
+                            </div>
+                    @endif
+                    <!-- end testimonial item -->
+                    </div>
+                    <div class="swiper-pagination swiper-pagination-three-slides h-auto"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end Event slider style 01 section -->
+
     <!-- feature box section -->
     <section id="focus_area" class="wow fadeIn lg-padding-two-lr md-no-padding-lr">
         <div class="container">
@@ -391,67 +462,7 @@
     </section>
     <!-- end feature box section -->
 
-    <!-- start Event slider style 01 section -->
-    <section id="upcoming_events" class="wow fadeIn bg-light-white">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div
-                    class="col-12 col-xl-6 col-md-8 margin-eight-bottom md-margin-40px-bottom sm-margin-30px-bottom text-center">
-                    <h5 class="alt-font font-weight-700 text-extra-dark-gray margin-20px-bottom text-uppercase">Past
-                        Events</h5>
-                    <span
-                        class="separator-line-horrizontal-medium-light2 bg-deep-pink d-table mx-auto width-100px"></span>
-                </div>
-            </div>
-            <div class="row position-relative">
-                <div class="swiper-container swiper-pagination-bottom black-move blog-slider swiper-three-slides">
-                    <div class="swiper-wrapper">
-                        <!-- start testimonial item -->
-                        @if(count($pastEvents)>0)
-                            @foreach($pastEvents as $key=>$event)
 
-                                <div class="col-12 col-lg-4 col-md-6 swiper-slide md-margin-four-bottom">
-                                    <div
-                                        class="margin-half-all bg-white box-shadow-light text-center padding-fourteen-all sm-padding-30px-all">
-                                        <a href="{{route('events-get', $event->id)}}"><b
-                                                class="md-margin-15px-bottom sm-margin-20px-bottom">{{$event->event_title}}</b>
-                                        </a>
-                                        <span
-                                            class="text-extra-dark-gray text-small text-uppercase d-block line-height-10 alt-font font-weight-600 py-2">{{$event->event_location}}</span>
-                                        <span
-                                            class="text-extra-dark-gray text-small text-uppercase d-block line-height-10 alt-font font-weight-600">
-
-                                    @if($event->event_start_date==$event->event_end_date)
-                                                {{\Carbon\Carbon::parse($event->event_start_date, 'UTC')->isoFormat('Do MMMM YYYY')}}
-                                            @else
-                                                @php
-                                                    $edate = \Carbon\Carbon::parse($event->event_end_date, 'UTC');
-                                                    $sdate = \Carbon\Carbon::parse($event->event_start_date, 'UTC');
-                                                @endphp
-                                                {{$sdate->isoFormat('D')}}
-                                                -{{$edate->isoFormat('D')}} {{\Carbon\Carbon::parse($event->event_start_date, 'UTC')->isoFormat('MMMM YYYY')}}
-                                            @endif
-                                </span>
-                                    </div>
-                                </div>
-
-                            @endforeach
-                        @else
-                            <div class="col-12 col-lg-4 col-md-6 swiper-slide md-margin-four-bottom">
-                                <div
-                                    class="margin-half-all bg-white box-shadow-light text-center padding-fourteen-all sm-padding-30px-all">
-                                    <h4 class="md-margin-15px-bottom sm-margin-20px-bottom">No Past Event</h4>
-                                </div>
-                            </div>
-                    @endif
-                    <!-- end testimonial item -->
-                    </div>
-                    <div class="swiper-pagination swiper-pagination-three-slides h-auto"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end Event slider style 01 section -->
 @endsection
 @push('js')
     <script>

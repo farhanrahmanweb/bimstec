@@ -65,26 +65,27 @@
             </form>
             @if(count($data)>0)
                 @foreach($data as $key=>$data)
-                    <div class="row margin-10px-bottom">
-                        <div class="col-12 col-md-2 md-margin-30px-bottom last-paragraph-no-margin">
-                            <div
-                                class="feature-content padding-10px-all bg-white box-shadow-light lg-padding-20px-all text-center">
-                                <div class="alt-font font-weight-600 text-extra-dark-gray"><span
-                                        class="text-deep-pink margin-5px-right" style="font-size: 25px;">{{\Carbon\Carbon::parse($data->event_start_date, 'UTC')->isoFormat('Do MMM')}} <br></span> {{\Carbon\Carbon::parse($data->event_start_date, 'UTC')->isoFormat('YYYY')}}
+                    <a href="{{route('events-get', $data->id)}}">
+                        <div class="row margin-10px-bottom">
+                            <div class="col-12 col-md-2 md-margin-30px-bottom last-paragraph-no-margin">
+                                <div
+                                    class="feature-content padding-10px-all bg-white box-shadow-light lg-padding-20px-all text-center">
+                                    <div class="alt-font font-weight-600 text-extra-dark-gray"><span
+                                            class="text-deep-pink margin-5px-right" style="font-size: 25px;">{{\Carbon\Carbon::parse($data->event_start_date, 'UTC')->isoFormat('Do MMM')}} <br></span> {{\Carbon\Carbon::parse($data->event_start_date, 'UTC')->isoFormat('YYYY')}}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-12 col-md-2 md-margin-30px-bottom last-paragraph-no-margin">
-                            <div
-                                class="feature-content padding-10px-all bg-white box-shadow-light lg-padding-20px-all text-center">
-                                <div class="alt-font font-weight-600 text-extra-dark-gray"><span
-                                        class="text-deep-pink margin-5px-right" style="font-size: 25px;">{{\Carbon\Carbon::parse($data->event_start_date, 'UTC')->isoFormat('Do MMM')}} <br></span> {{\Carbon\Carbon::parse($data->event_start_date, 'UTC')->isoFormat('YYYY')}}
+                            <div class="col-12 col-md-2 md-margin-30px-bottom last-paragraph-no-margin">
+                                <div
+                                    class="feature-content padding-10px-all bg-white box-shadow-light lg-padding-20px-all text-center">
+                                    <div class="alt-font font-weight-600 text-extra-dark-gray"><span
+                                            class="text-deep-pink margin-5px-right" style="font-size: 25px;">{{\Carbon\Carbon::parse($data->event_start_date, 'UTC')->isoFormat('Do MMM')}} <br></span> {{\Carbon\Carbon::parse($data->event_start_date, 'UTC')->isoFormat('YYYY')}}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-lg-8 text-center text-lg-left wow fadeIn">
-                            <a href="{{route('events-get', $data->id)}}">
+                            <div class="col-12 col-lg-8 text-center text-lg-left wow fadeIn">
+
                                 <div
                                     class="feature-content padding-10px-all bg-white box-shadow-light lg-padding-20px-all download_tb">
                                     <b class="mb-0">{{$data->event_title}}</b>
@@ -92,9 +93,10 @@
                                         {{$data->event_location}}
                                     </p>
                                 </div>
-                            </a>
+
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             @else
                 <p>Sorry No data Found</p>
