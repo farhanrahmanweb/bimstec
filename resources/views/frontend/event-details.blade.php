@@ -41,8 +41,9 @@
                     <div class="owl-carousel owl-theme" style="height: 200px;" id="owl-example">
                         @foreach($data->photos as $slider)
                             <div class="items">
-                                <div class="banner">
-                                    <img src="{{asset('storage/event/thumbnail/').$slider->image}}" style="height: 200px; object-fit: cover;" alt="event">
+                                <div>
+                                    <img src="{{asset('storage/event/').$slider->image}}"
+                                         style="height: 500px; object-fit: cover;" alt="event">
                                 </div>
                             </div>
                         @endforeach

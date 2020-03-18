@@ -82,7 +82,7 @@ class DocumentController extends Controller
         $document->title = $request->title;
         $document->description = $request->description;
         $document->category_id = $request->category_id;
-        $document->year = date('Y');
+        $document->year = substr($request->document_date,0,4);
         $document->document_date = $request->document_date;
         $document->file = $fileName;
         if (isset($request->subcategory_id)) {
@@ -168,7 +168,7 @@ class DocumentController extends Controller
         $document->title = $request->title;
         $document->description = $request->description;
         $document->category_id = $request->category_id;
-        $document->year = date('Y');
+        $document->year = substr($request->document_date,0,4);
         $document->document_date = $request->document_date;
         $document->file = $fileName;
         if (isset($request->subcategory_id)) {
