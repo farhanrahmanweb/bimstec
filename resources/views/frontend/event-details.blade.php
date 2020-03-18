@@ -42,7 +42,7 @@
                         @foreach($data->photos as $slider)
                             <div class="items">
                                 <div class="banner">
-                                    <img src="{{asset('storage/event/').$slider->image}}" style="height: 200px; object-fit: cover;" alt="event">
+                                    <img src="{{asset('storage/event/thumbnail/').$slider->image}}" style="height: 200px; object-fit: cover;" alt="event">
                                 </div>
                             </div>
                         @endforeach
